@@ -1,0 +1,50 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  /*  Make our map take the full viewport - 100% */
+  #root,
+  .App,
+  .mapContainer,
+  .mapBox {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Tooltip code */
+  .mapboxgl-popup {
+    font-family: "Baloo Thambi 2", cursive;
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+    color: #424242;
+  }
+
+  .mapboxgl-popup-content {
+    padding: 1rem;
+    margin: 0;
+
+    > * {
+      margin: 0 0 0.5rem;
+      padding: 0;
+    }
+
+    p {
+      border-bottom: 1px solid rgba(black, 0.2);
+
+      b {
+        font-size: 1.6rem;
+        color: #212121;
+        padding: 0 5px;
+      }
+    }
+
+    img {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
