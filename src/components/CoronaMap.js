@@ -65,9 +65,9 @@ const CoronaMap = () => {
                     }
                 });
 
-                // Add our layer
+                // Add first layer: active cases
                 map.addLayer({
-                    id: "circles",
+                    id: "covid19-cases",
                     source: "points", // this should be the id of the source
                     type: "circle",
                     // paint properties
@@ -104,6 +104,49 @@ const CoronaMap = () => {
                             75000, '#fc4e2a',
                             100000, '#e31a1c',
                             200000, '#b10026'
+                        ]
+                    }
+                });
+
+                // Add second layer - death count
+                map.addLayer({
+                    id: "covid19-deaths",
+                    source: "points", // this should be the id of the source
+                    type: "circle",
+                    // paint properties
+                    paint: {
+                        "circle-opacity": 0.75,
+                        "circle-stroke-width": [
+                            "interpolate",
+                            ["linear"],
+                            ["get", "deaths"],
+                            1, 1,
+                            100000, 1.5,
+                        ],
+                        "circle-radius": [
+                            "interpolate",
+                            ["linear"],
+                            ["get", "deaths"],
+                            1, 4,
+                            1000, 8,
+                            4000, 10,
+                            8000, 14,
+                            12000, 18,
+                            100000, 40,
+                            200000, 50
+                        ],
+                        "circle-color": [
+                            "interpolate",
+                            ["linear"],
+                            ["get", "deaths"],
+                            1, '#f7fcf5',
+                            100, '#e5f5e0',
+                            500, '#c7e9c0',
+                            3000, '#a1d99b',
+                            10000, '#74c476',
+                            25000, '#41ab5d',
+                            50000, '#238b45',
+                            100000, '#005a32'
                         ]
                     }
                 });
