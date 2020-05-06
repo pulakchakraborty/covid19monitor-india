@@ -8,6 +8,9 @@ import { mapLayerConfirmed } from '../config/map/mapLayerConfirmed';
 import { mapLayerRecovered } from '../config/map/mapLayerRecovered';
 import { mapLayerDead } from '../config/map/mapLayerDead';
 
+// Mapbox CSS
+import "mapbox-gl/dist/mapbox-gl.css";
+
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN;
 
 const CoronaMap = () => {
@@ -74,6 +77,69 @@ const CoronaMap = () => {
 
                 // Add third layer - death count
                 map.addLayer({...mapLayerDead});
+
+                // Create a mapbox popup
+                const popup = new mapboxgl.Popup({
+                    closeButton: false,
+                    closeOnClick: false
+                });
+
+                // Variable to hold the active country/province on hover
+                let lastId;
+
+                // Mouse move event
+                map.on("mousemove", "covid19-cases", e => {
+                    // Get the id from the properties
+                    const id = e.features[0].properties.id;
+
+                    // Only if the id are different we process the tooltip
+                    if (id !== lastId) {
+                    lastId = id;
+
+                    map.getCanvas().style.cursor = "pointer";
+
+                    const { confirmed, dead, recovered, country, province } = e.features[0].properties;
+                    const coordinates = e.features[0].geometry.coordinates.slice();
+
+                    // Collect data for the tooltip
+                    const countryISO =
+                        lookup.byCountry(country)?.iso2 || lookup.byInternet(country)?.iso2;
+                    const provinceHTML =
+                        province !== "null" ? `<p>Province: <b>${province}</b></p>` : "";
+                    const mortalityRate = ((dead / confirmed) * 100).toFixed(2);
+                    const countryFlagHTML = Boolean(countryISO)
+                        ? `<img src="https://www.countryflags.io/${countryISO}/flat/64.png"></img>`
+                        : "";
+
+                    const HTML = `<p><b>${country}</b>${countryFlagHTML}</p>
+                                ${provinceHTML}
+                                <p>Confirmed: ${confirmed}</p>
+                                <p>Recovered: ${recovered}</p>
+                                <p>Dead: ${dead}</p>
+                                <p>Mortality Rate: ${mortalityRate}%</p>
+                                `;
+
+                    // Ensure that if the map is zoomed out such that multiple
+                    // copies of the feature are visible, the popup appears
+                    // over the copy being pointed to.
+                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                    }
+
+                    popup
+                        .setLngLat(coordinates)
+                        .setHTML(HTML)
+                        .addTo(map);
+                    }
+                });
+
+                // Mouse leave event
+                map.on("mouseleave", "covid19-cases", function() {
+                    // Reset the last Id
+                    lastId = undefined;
+                    map.getCanvas().style.cursor = "";
+                    popup.remove();
+                });
             });
         }
 
