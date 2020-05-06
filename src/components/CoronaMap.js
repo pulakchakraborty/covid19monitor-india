@@ -39,7 +39,7 @@ const CoronaMap = () => {
             );
 
     // Use swr from Zeit to fetch data from API
-    const { data, error } = useSWR("htps://corona.lmao.ninja/v2/jhucsse", fetcher);
+    const { data, error } = useSWR("https://corona.lmao.ninja/v2/jhucsse", fetcher);
 
     // Initialize the map
     useEffect(() => {
