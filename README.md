@@ -1,3 +1,9 @@
+## App Description 
+
+Map visualization of Covid-19 cases in India and across the world
+
+![homepage](https://github.com/pulakchakraborty/c19-india-map/blob/master/public/homepage.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
