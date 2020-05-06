@@ -39,9 +39,7 @@ const CoronaMap = () => {
             );
 
     // Use swr from Zeit to fetch data from API
-    const { data } = useSWR("https://corona.lmao.ninja/v2/jhucsse", fetcher);
-
-    console.log('Fetched and converetd data: ', data);
+    const { data, error } = useSWR("htps://corona.lmao.ninja/v2/jhucsse", fetcher);
 
     // Initialize the map
     useEffect(() => {
@@ -78,7 +76,20 @@ const CoronaMap = () => {
                 map.addLayer({...mapLayerDead});
             });
         }
-    }, [data]);
+
+        if (error) {
+            // In case of error while fetching data from API only load the map
+            const map = new mapboxgl.Map({
+                container: mapboxRef.current,
+                style: "mapbox://styles/mapbox/dark-v10",   // theme of the map
+                center: [76.33643, 22.54930],   // initial geo location
+                zoom: 4     // initial zoom
+            });
+
+            // Add navigation controls to the top right of the canvas
+            map.addControl(new mapboxgl.NavigationControl());
+        }
+    }, [data, error]);
 
     return(
         <div className="mapContainer">
