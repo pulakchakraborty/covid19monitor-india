@@ -1,0 +1,4 @@
+export default {
+    jhucsse: 'https://corona.lmao.ninja/v2/jhucsse',
+    indiaLatest: 'https://api.rootnet.in/covid19-in/stats/latest'
+}

@@ -1,11 +1,12 @@
 import React from 'react';
 
 import '../styles/SidePanel.scss';
+import CasesHighlights from './CasesHighlights';
 
 const SidePanel = () => {
     return(
         <div className="side-panel">
-            Side Panel Component
+            <CasesHighlights />
         </div>
     );
 }

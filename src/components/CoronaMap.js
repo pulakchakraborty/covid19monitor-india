@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import lookup from 'country-code-lookup';
 
 import '../styles/App.scss';
+import config from '../config';
 import { mapLayerConfirmed } from '../config/map/mapLayerConfirmed';
 import { mapLayerRecovered } from '../config/map/mapLayerRecovered';
 import { mapLayerDead } from '../config/map/mapLayerDead';
@@ -42,7 +43,7 @@ const CoronaMap = () => {
             );
 
     // Use swr from Zeit to fetch data from API
-    const { data, error } = useSWR("https://corona.lmao.ninja/v2/jhucsse", fetcher);
+    const { data, error } = useSWR(config.jhucsse, fetcher);
 
     // Initialize the map
     useEffect(() => {
