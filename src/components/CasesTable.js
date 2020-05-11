@@ -1,7 +1,52 @@
 import React from 'react';
-import { useTable, useSortBy, usePagination } from 'react-table';
+import { useTable, useSortBy, usePagination, useBlockLayout } from 'react-table';
+import styled from 'styled-components';
 
-import '../styles/CasesTable.scss';
+const Styles = styled.div`
+    padding: 1rem;
+
+    .table-container {
+        margin: 0;
+        font-size: 0.9rem;
+        overflow: hidden;
+        transition: opacity 0.3s ease;
+        position: relative;
+
+        .table {
+            display: inline-block;
+            height: 360px;
+            border-spacing: 0;
+            line-height: 1.4;
+
+            .tr {
+                :last-child {
+                    .td {
+                    border-bottom: 0;
+                    }
+                }
+            }
+
+            .th,
+            .td {
+                margin: 0;
+                padding: 0.25rem;
+                text-align: right;
+
+                :first-child {
+                    text-align: left;
+                }
+
+                :last-child {
+                    border-right: 0;
+                }
+            }
+
+            .th {
+                border-bottom: 1px solid;
+            }
+        }
+    }
+`
 
 const CasesTable = ({ columns, data }) => {
     // Use the useTable Hook to send the columns and data to build the table
@@ -26,7 +71,8 @@ const CasesTable = ({ columns, data }) => {
             initialState: { pageIndex: 0 }
         },
         useSortBy,           // hook for getting sorting capability
-        usePagination        // hook for setting pagination
+        usePagination,       // hook for setting pagination
+        useBlockLayout       // hook for width-supported layout
     );
 
     console.log("CasesTable Component: ", columns);
@@ -36,54 +82,60 @@ const CasesTable = ({ columns, data }) => {
     - react-table doesn't have UI, it's headless. We just need to put the react-table props from the Hooks
     */
     return (
-        <div className="table-container">
-            <table className="cases-table" {...getTableProps()}>
-            <thead className="cases-table-head">
-                {headerGroups.map(headerGroup => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map(column => (
-                            <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                                {column.render("Header")}
-                            </th>
+        <Styles>
+            <div className="table-container">
+                <div className="table" {...getTableProps()}>
+                    <div>
+                        {headerGroups.map(headerGroup => (
+                            <div {...headerGroup.getHeaderGroupProps()} className="tr">
+                                {headerGroup.headers.map(column => (
+                                    <div {...column.getHeaderProps(column.getSortByToggleProps())} className="th">
+                                        {column.render("Header")}
+                                    </div>
+                                ))}
+                            </div>
                         ))}
-                    </tr>
-                ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-                {page.map((row, i) => {
-                    prepareRow(row);
-                    return (
-                        <tr {...row.getRowProps()}>
-                            {row.cells.map(cell => {
-                                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-                            })}
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
-            <div>
-                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-                {"<<"}
-                </button>{" "}
-                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-                {"<"}
-                </button>{" "}
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
-                {">"}
-                </button>{" "}
-                <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-                {">>"}
-                </button>{" "}
+                    </div>
+                    <div {...getTableBodyProps()}>
+                        {page.map((row, i) => {
+                            prepareRow(row);
+                            return (
+                                <div {...row.getRowProps()} className="tr">
+                                    {row.cells.map(cell => {
+                                        return(
+                                            <div {...cell.getCellProps()} className="td">
+                                                {cell.render("Cell")}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+                <div>
+                    <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                    {"<<"}
+                    </button>{" "}
+                    <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                    {"<"}
+                    </button>{" "}
+                    <button onClick={() => nextPage()} disabled={!canNextPage}>
+                    {">"}
+                    </button>{" "}
+                    <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+                    {">>"}
+                    </button>{" "}
 
-                <span>
-                Page{" "}
-                <strong>
-                    {pageIndex + 1} of {pageOptions.length}
-                </strong>{" "}
-                </span>
+                    <span>
+                    Page{" "}
+                    <strong>
+                        {pageIndex + 1} of {pageOptions.length}
+                    </strong>{" "}
+                    </span>
+                </div>
             </div>
-        </div>
+        </Styles>
     );
 };
 
