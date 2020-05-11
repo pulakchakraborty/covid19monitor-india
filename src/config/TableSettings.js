@@ -5,22 +5,26 @@ export const TableSettings = {
         {
             Header: "State",
             accessor: "loc",
-            sortType: "basic"
+            sortType: "basic",
+            width: 150
         },
         {
             Header: "Active",
             accessor: "totalConfirmed",
-            sortType: "basic"
+            sortType: "basic",
+            width: 80
         },
         {
             Header: "Recovered",
             accessor: "discharged",
-            sortType: "basic"
+            sortType: "basic",
+            width: 80
         },
         {
             Header: "Dead",
             accessor: "deaths",
-            sortType: "basic"
+            sortType: "basic",
+            width: 80
         }
     ]
 };
