@@ -1,0 +1,19 @@
+.table-container {
+    margin: 0;
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    overflow: auto;
+    transition: opacity 0.3s ease;
+    position: relative;
+}
+
+.cases-table {
+    display: inline-block;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.cases-table-head {
+    border-bottom: 1px solid #ccc;
+}
+
