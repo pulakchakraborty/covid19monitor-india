@@ -12,7 +12,7 @@ export const TableSettings = {
             Header: "Active",
             accessor: "totalConfirmed",
             sortType: "basic",
-            width: 80
+            width: 75
         },
         {
             Header: "Recovered",
@@ -24,7 +24,7 @@ export const TableSettings = {
             Header: "Dead",
             accessor: "deaths",
             sortType: "basic",
-            width: 80
+            width: 75
         }
     ]
 };

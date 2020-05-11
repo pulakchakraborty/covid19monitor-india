@@ -17,7 +17,6 @@ const Styles = styled.div`
             height: 360px;
             border-spacing: 0;
             line-height: 1.4;
-            text-align: left;
 
             .tr {
                 :last-child {
@@ -31,6 +30,11 @@ const Styles = styled.div`
             .td {
                 margin: 0;
                 padding: 0.25rem;
+                text-align: right;
+
+                :first-child {
+                    text-align: left;
+                }
 
                 :last-child {
                     border-right: 0;
