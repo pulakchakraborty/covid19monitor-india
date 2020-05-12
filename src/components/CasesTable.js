@@ -14,9 +14,9 @@ const Styles = styled.div`
 
         .table {
             display: inline-block;
-            height: 360px;
+            height: 240px;
             border-spacing: 0;
-            line-height: 1.4;
+            line-height: 1.3;
 
             .tr {
                 :last-child {
@@ -45,6 +45,10 @@ const Styles = styled.div`
                 border-bottom: 1px solid;
             }
         }
+
+        .pagination-container {
+            padding: 0.25rem;
+        }
     }
 `
 
@@ -68,7 +72,7 @@ const CasesTable = ({ columns, data }) => {
     } = useTable({
             columns,
             data,
-            initialState: { pageIndex: 0 }
+            initialState: { pageIndex: 0, pageSize: 6 }
         },
         useSortBy,           // hook for getting sorting capability
         usePagination,       // hook for setting pagination
@@ -113,7 +117,7 @@ const CasesTable = ({ columns, data }) => {
                         })}
                     </div>
                 </div>
-                <div>
+                <div className="pagination-container">
                     <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                     {"<<"}
                     </button>{" "}
