@@ -8,6 +8,7 @@ import CasesTable from './CasesTable';
 import CasesChart from './CasesChart';
 import config from '../config';
 import { TableSettings } from '../config/TableSettings';
+import SwitchWrapper from './SwitchWrapper';
 
 const SidePanel = () => {
     const [ indiaCases, setIndiaCases ] = useState({});
@@ -19,6 +20,10 @@ const SidePanel = () => {
     const { indiaLatest, indiaHistory } = config;
 
     const columns = useMemo(() => [{...TableSettings}], []);
+
+    const switchChart = (newInfections) => {
+        console.log("inside swictChart: ", newInfections);
+    };
 
     useEffect(() => {
         const fecthLatestData = async () => {
@@ -47,6 +52,7 @@ const SidePanel = () => {
     return(
         <div className="side-panel">
             <CasesHighlights summary={summary} />
+            <SwitchWrapper switchChart={switchChart} />
             <CasesChart chartData={indiaHistorical} />
             <CasesTable columns={columns} data={tableData} />
         </div>
