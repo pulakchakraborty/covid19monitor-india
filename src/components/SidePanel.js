@@ -47,8 +47,8 @@ const SidePanel = () => {
     return(
         <div className="side-panel">
             <CasesHighlights summary={summary} />
-            <CasesTable columns={columns} data={tableData} />
             <CasesChart chartData={indiaHistorical} />
+            <CasesTable columns={columns} data={tableData} />
         </div>
     );
 
