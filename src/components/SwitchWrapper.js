@@ -17,7 +17,7 @@ const Styles = styled.div`
 
 const SwitchWrapper = ({ switchChart }) => {
     const [state, setState] = useState({
-        checked: true,
+        checked: false,
       });
 
     const handleChange = (event) => {
