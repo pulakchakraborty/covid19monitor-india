@@ -35,9 +35,9 @@ const CasesChart = ({ chartData }) => {
                     <XAxis dataKey="index" />
                     <YAxis
                         type="number"
-                        tickCount="2"
-                        tickSize="6"
-                        mirror="true"
+                        tickCount={2}
+                        tickSize={6}
+                        mirror={true}
                         domain={[0, 'dataMax']} />
                     <Tooltip />
                     <Legend />
