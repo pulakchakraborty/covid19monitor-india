@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import useSWR from 'swr';
 import axios from 'axios';
+import styled from 'styled-components';
 
-import '../styles/SidePanel.scss';
 import CasesHighlights from './CasesHighlights';
 import CasesTable from './CasesTable';
 import CasesChart from './CasesChart';
@@ -10,6 +9,23 @@ import config from '../config';
 import { TableSettings } from '../config/TableSettings';
 import SwitchWrapper from './SwitchWrapper';
 import InfectionsChart from './InfectionsChart';
+
+const Styles = styled.div`
+    margin: 10px;
+    position: absolute;
+    display: block;
+    height: 700px;
+    width: 420px;
+    right: auto;
+    left: 15px;
+    top: 50px;
+    border-radius: 4px;
+    background: black;
+    color: dimgrey;
+    justify-content: center;
+    opacity: 0.85;
+
+`
 
 const SidePanel = () => {
     const [ indiaCases, setIndiaCases ] = useState({});
@@ -24,17 +40,8 @@ const SidePanel = () => {
 
     const columns = useMemo(() => [{...TableSettings}], []);
 
-    let chart;
-
     const switchChart = (newInfections) => {
         setNewInfectionsChart(newInfections);
-        if (newInfections) {
-            chart = <div>Empty Chart</div>;
-        } else {
-
-            chart = <CasesChart chartData={indiaHistorical} />;
-        }
-        console.log("inside switch chart: ", newInfections);
     };
 
 
@@ -63,7 +70,7 @@ const SidePanel = () => {
     }, []);
 
     return(
-        <div className="side-panel">
+        <Styles>
             <CasesHighlights summary={summary} />
             <SwitchWrapper switchChart={switchChart} />
             {newInfectionsChart
@@ -71,7 +78,7 @@ const SidePanel = () => {
                 : <CasesChart chartData={indiaHistorical} />
             }
             <CasesTable columns={columns} data={tableData} />
-        </div>
+        </Styles>
     );
 
 }

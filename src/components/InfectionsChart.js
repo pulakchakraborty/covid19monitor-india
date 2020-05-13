@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import styled from 'styled-components';
 
 const Styles = styled.div`
@@ -21,7 +21,6 @@ const InfectionsChart = ({ chartData }) => {
             newInfections: data.summary.total - chartData[index].summary.total
         };
     });
-    console.log("dataArr: ", dataArr);
 
     return(
         <Styles>
