@@ -9,7 +9,7 @@ export const TableSettings = {
             width: 150
         },
         {
-            Header: "Active",
+            Header: "Confirmed",
             accessor: "totalConfirmed",
             sortType: "basic",
             width: 75
