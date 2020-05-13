@@ -29,15 +29,15 @@ const CasesChart = ({ chartData }) => {
                 <AreaChart
                     data={dataArr}
                     margin={{
-                    top: 10, right: 20, left: 10, bottom: 0,
+                        top: 10, right: 20, left: 10, bottom: 0,
                     }}
                 >
                     <XAxis dataKey="index" />
                     <YAxis
                         type="number"
-                        tickCount="2"
-                        tickSize="6"
-                        mirror="true"
+                        tickCount={2}
+                        tickSize={6}
+                        mirror={true}
                         domain={[0, 'dataMax']} />
                     <Tooltip />
                     <Legend />

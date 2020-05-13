@@ -8,6 +8,8 @@ import CasesTable from './CasesTable';
 import CasesChart from './CasesChart';
 import config from '../config';
 import { TableSettings } from '../config/TableSettings';
+import SwitchWrapper from './SwitchWrapper';
+import InfectionsChart from './InfectionsChart';
 
 const SidePanel = () => {
     const [ indiaCases, setIndiaCases ] = useState({});
@@ -16,9 +18,25 @@ const SidePanel = () => {
     const [ indiaHistorical, setIndiaHistorical ] = useState([]);
     const [ errorMessage, setErrorMessage ] = useState('');
     const [ hasError, setHasError ] = useState(false);
+    const [ newInfectionsChart, setNewInfectionsChart ] = useState(false);
+
     const { indiaLatest, indiaHistory } = config;
 
     const columns = useMemo(() => [{...TableSettings}], []);
+
+    let chart;
+
+    const switchChart = (newInfections) => {
+        setNewInfectionsChart(newInfections);
+        if (newInfections) {
+            chart = <div>Empty Chart</div>;
+        } else {
+
+            chart = <CasesChart chartData={indiaHistorical} />;
+        }
+        console.log("inside switch chart: ", newInfections);
+    };
+
 
     useEffect(() => {
         const fecthLatestData = async () => {
@@ -47,7 +65,11 @@ const SidePanel = () => {
     return(
         <div className="side-panel">
             <CasesHighlights summary={summary} />
-            <CasesChart chartData={indiaHistorical} />
+            <SwitchWrapper switchChart={switchChart} />
+            {newInfectionsChart
+                ? <InfectionsChart chartData={indiaHistorical} />
+                : <CasesChart chartData={indiaHistorical} />
+            }
             <CasesTable columns={columns} data={tableData} />
         </div>
     );

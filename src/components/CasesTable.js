@@ -79,7 +79,7 @@ const CasesTable = ({ columns, data }) => {
         useBlockLayout       // hook for width-supported layout
     );
 
-    console.log("CasesTable Component: ", columns);
+    //console.log("CasesTable Component: ", columns);
 
     /*
     Render the UI for your table
