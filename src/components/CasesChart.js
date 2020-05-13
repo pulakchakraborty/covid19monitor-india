@@ -29,7 +29,7 @@ const CasesChart = ({ chartData }) => {
                 <AreaChart
                     data={dataArr}
                     margin={{
-                    top: 10, right: 20, left: 10, bottom: 0,
+                        top: 10, right: 20, left: 10, bottom: 0,
                     }}
                 >
                     <XAxis dataKey="index" />

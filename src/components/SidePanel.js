@@ -9,6 +9,7 @@ import CasesChart from './CasesChart';
 import config from '../config';
 import { TableSettings } from '../config/TableSettings';
 import SwitchWrapper from './SwitchWrapper';
+import InfectionsChart from './InfectionsChart';
 
 const SidePanel = () => {
     const [ indiaCases, setIndiaCases ] = useState({});
@@ -66,7 +67,7 @@ const SidePanel = () => {
             <CasesHighlights summary={summary} />
             <SwitchWrapper switchChart={switchChart} />
             {newInfectionsChart
-                ? <div>New Infections Chart Placeholder</div>
+                ? <InfectionsChart chartData={indiaHistorical} />
                 : <CasesChart chartData={indiaHistorical} />
             }
             <CasesTable columns={columns} data={tableData} />
