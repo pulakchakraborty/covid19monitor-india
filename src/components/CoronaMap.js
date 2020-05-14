@@ -5,6 +5,7 @@ import lookup from 'country-code-lookup';
 
 import '../styles/App.scss';
 import config from '../config';
+import { StatesLatLong } from '../config/StatesLatLong';
 import { mapLayerConfirmed } from '../config/map/mapLayerConfirmed';
 import { mapLayerRecovered } from '../config/map/mapLayerRecovered';
 import { mapLayerDead } from '../config/map/mapLayerDead';
@@ -16,8 +17,10 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN;
 
 const CoronaMap = () => {
     const mapboxRef = useRef(null); // DOM element to render map
+    const { indiaLatest } = config;
 
     // Conversion of fetched data to mapbox geojson formatted data
+    /*
     const fetcher = url =>
         fetch(url)
             .then(r => r.json())
@@ -41,13 +44,37 @@ const CoronaMap = () => {
                     }
                 }))
             );
+    */
+   const fetcher = async (url) =>
+        await fetch(url)
+            .then(r => r.json())
+            .then(response => response.data.regional)
+            .then(states =>
+                states.map((point, index) => ({
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        coordinates: StatesLatLong.find(state => state.name === point.loc).location
+                    },
+                    properties: {
+                        id: index,
+                        country: "India",
+                        province: point.loc,
+                        confirmed: point.totalConfirmed,
+                        dead: point.deaths,
+                        recovered: point.discharged
+                    }
+                }))
+            );
 
     // Use swr from Zeit to fetch data from API
-    const { data, error } = useSWR(config.jhucsse, fetcher);
+    const { data, error } = useSWR(indiaLatest, fetcher);
+    console.log(`data: ${data}`);
 
     // Initialize the map
     useEffect(() => {
         if (data) {
+            console.log(`data: ${data}`);
             // You can store the map instance with useRef too
             const map = new mapboxgl.Map({
                 container: mapboxRef.current,
@@ -152,7 +179,7 @@ const CoronaMap = () => {
                 center: [76.33643, 22.54930],   // initial geo location
                 zoom: 4     // initial zoom
             });
-
+            console.log(`error: ${error}`);
             // Add navigation controls to the top right of the canvas
             map.addControl(new mapboxgl.NavigationControl());
         }
