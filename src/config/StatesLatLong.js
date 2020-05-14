@@ -51,8 +51,8 @@ export const StatesLatLong = [
     {
        "name":"Dadar Nagar Haveli",
        "location":[
-            20.26657819,
-            73.0166178
+            73.0166178,
+            20.26657819
        ]
     },
     {
@@ -72,15 +72,15 @@ export const StatesLatLong = [
     {
        "name":"Haryana",
        "location":[
-            77.01999101,
-            28.45000633
+            75.721657,
+            29.149187
        ]
     },
     {
        "name":"Himachal Pradesh",
        "location":[
-            77.16659704,
-            31.10002545
+            77.015153,
+            31.635187
        ]
     },
     {
@@ -100,8 +100,8 @@ export const StatesLatLong = [
     {
        "name":"Karnataka",
        "location":[
-            76.91999711,
-            12.57038129
+            75.763553,
+            13.539201
        ]
     },
     {
@@ -184,15 +184,15 @@ export const StatesLatLong = [
     {
        "name":"Punjab",
        "location":[
-            75.98000281,
-            31.51997398
+            75.371169,
+            30.467683
        ]
     },
     {
        "name":"Rajasthan",
        "location":[
-            74.63998124,
-            26.44999921
+            73.024307,
+            26.238947
        ]
     },
     {
@@ -205,8 +205,8 @@ export const StatesLatLong = [
     {
        "name":"Tamil Nadu",
        "location":[
-            79.15004187,
-            12.92038576
+            78.704674,
+            10.790483
        ]
     },
     {
@@ -226,15 +226,15 @@ export const StatesLatLong = [
     {
        "name":"Uttar Pradesh",
        "location":[
-            78.05000565,
-            27.59998069
+            80.946167,
+            26.846695
        ]
     },
     {
        "name":"Uttarakhand",
        "location":[
-            78.05000565,
-            30.32040895
+            78.979202,
+            30.284500
        ]
     },
     {
