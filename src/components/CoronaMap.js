@@ -76,11 +76,15 @@ const CoronaMap = () => {
         if (data) {
             console.log(`data: ${data}`);
             // You can store the map instance with useRef too
+            const bounds = [
+                [65.818748, 5.979753], // Southwest coordinates
+                [100.294876, 37.983175] // Northeast coordinates
+                ];
             const map = new mapboxgl.Map({
                 container: mapboxRef.current,
                 style: "mapbox://styles/mapbox/dark-v10",   // theme of the map
                 center: [76.33643, 22.54930],   // initial geo location
-                zoom: 4     // initial zoom
+                maxBounds: bounds    // restrict map panning to an area
             });
 
             // Add navigation controls to the top right of the canvas
