@@ -8,9 +8,11 @@ import CoronaMap from './CoronaMap';
 import SidePanel from './SidePanel';
 
 const WidgetWrapper = () => {
-    const { indiaLatest, jhucsse, countriesLatest } = config;
+    const { indiaLatest,
+        countriesLatest,
+        allSummary } = config;
     const [ data, setData ] = useState({});
-    const [ summary, setSummary ] = useState({ total: 0, deaths: 0, discharged: 0 });
+    const [ summary, setSummary ] = useState({ confimred: 0, dead: 0, recovered: 0 });
     const [ tableData, setTableData ] = useState([]);
     const [ errorMessage, setErrorMessage ] = useState('');
     const [ hasError, setHasError ] = useState(false);
@@ -45,7 +47,11 @@ const WidgetWrapper = () => {
                                 }
                             }))
                         );
-                        setSummary(responseLatest.data.summary);
+                        setSummary({
+                            confirmed: responseLatest.data.summary.total,
+                            dead: responseLatest.data.summary.deaths,
+                            recovered: responseLatest.data.summary.discharged
+                        });
                         setTableData(responseLatest.data.regional);
                     }
 
@@ -87,6 +93,14 @@ const WidgetWrapper = () => {
                         );
                         //setSummary(responseLatest.data.summary);
                         setTableData(responseLatest);
+                        const { data: responseAllSummary, status: statusHistory } = await axios.get(allSummary);
+                        if (statusHistory === 200) {
+                            setSummary({
+                                confirmed: responseAllSummary.cases,
+                                dead: responseAllSummary.deaths,
+                                recovered: responseAllSummary.recovered
+                            });
+                        }
                     }
 
                 } catch(e) {
