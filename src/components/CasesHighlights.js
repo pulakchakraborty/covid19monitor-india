@@ -5,7 +5,7 @@ import { getCurrentTimestamp } from '../helpers';
 
 const Styles = styled.div`
 .cases-highlights-wrapper {
-    padding: 10px 15px;
+    padding: 5px 15px;
     margin: 0 auto;
     padding-bottom: 5px !important;
 }
@@ -16,7 +16,7 @@ const Styles = styled.div`
 }
 
 .highlights-header-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 400;
 }
 

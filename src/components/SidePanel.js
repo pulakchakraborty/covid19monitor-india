@@ -9,6 +9,7 @@ import config from '../config';
 import { TableSettings } from '../config/TableSettings';
 import SwitchWrapper from './SwitchWrapper';
 import InfectionsChart from './InfectionsChart';
+import MapFilter from './MapFilter';
 
 const Styles = styled.div`
     margin: 10px;
@@ -27,7 +28,7 @@ const Styles = styled.div`
 
 `
 
-const SidePanel = ({ summary, tableData }) => {
+const SidePanel = ({ summary, tableData, mapFilter }) => {
     const [ indiaCases, setIndiaCases ] = useState({});
     //const [ summary, setSummary ] = useState({ total: 0, deaths: 0, discharged: 0 });
     //const [ tableData, setTableData ] = useState([]);
@@ -44,6 +45,9 @@ const SidePanel = ({ summary, tableData }) => {
         setNewInfectionsChart(newInfections);
     };
 
+    const switchMap = (mapName) => {
+        mapFilter(mapName);
+    };
 
     useEffect(() => {
         const fecthLatestData = async () => {
@@ -71,6 +75,7 @@ const SidePanel = ({ summary, tableData }) => {
 
     return(
         <Styles>
+            <MapFilter mapFilter={switchMap} />
             <CasesHighlights summary={summary} />
             <SwitchWrapper switchChart={switchChart} />
             {newInfectionsChart

@@ -65,11 +65,11 @@ const CoronaMap = ({ data }) => {
     */
     // Use swr from Zeit to fetch data from API
     //const { data, error } = useSWR(indiaLatest, fetcher);
-    console.log(`data coronamap: ${data}`);
+    //console.log(`data coronamap: ${data}`);
 
     // Initialize the map
     useEffect(() => {
-        console.log(`data- coronamap- useeffect: ${data}`);
+        //console.log(`data- coronamap- useeffect: ${data}`);
         // You can store the map instance with useRef too
         const bounds = [
             [65.818748, 5.979753], // Southwest coordinates
