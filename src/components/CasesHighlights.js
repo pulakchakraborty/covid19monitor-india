@@ -5,7 +5,7 @@ import { getCurrentTimestamp } from '../helpers';
 
 const Styles = styled.div`
 .cases-highlights-wrapper {
-    padding: 10px 15px;
+    padding: 5px 15px;
     margin: 0 auto;
     padding-bottom: 5px !important;
 }
@@ -16,7 +16,7 @@ const Styles = styled.div`
 }
 
 .highlights-header-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 400;
 }
 
@@ -79,13 +79,13 @@ const Styles = styled.div`
 }
 `
 
-const CasesHighlights = (props) => {
-    const { total, discharged, deaths } = props.summary;
+const CasesHighlights = ({ summary, mapSummary }) => {
+    const { total, discharged, deaths } = summary;
     return(
         <Styles>
             <div className="cases-highlights-wrapper">
                 <div className="cases-highlights-header">
-                    <div className="highlights-header-title">Coronavirus Cases in India</div>
+                    <div className="highlights-header-title">Coronavirus Cases in {mapSummary ? 'India' : 'the World'}</div>
                     <div className="highlights-header-timestamp">
                         <strong>As of:</strong> {getCurrentTimestamp()}
                     </div>

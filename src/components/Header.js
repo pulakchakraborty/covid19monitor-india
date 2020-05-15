@@ -43,7 +43,7 @@ const Header = () => {
         <Styles>
             <div className="header">
                 <div className="header-headline">
-                    India Coronavirus Monitor
+                    Coronavirus Monitor
                 </div>
                 <div className="header-social">
                     <a href="https://github.com/pulakchakraborty/c19-india-map"

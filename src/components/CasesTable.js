@@ -14,7 +14,7 @@ const Styles = styled.div`
 
         .table {
             display: inline-block;
-            height: 240px;
+            height: 200px;
             border-spacing: 0;
             line-height: 1.3;
 
@@ -72,7 +72,7 @@ const CasesTable = ({ columns, data }) => {
     } = useTable({
             columns,
             data,
-            initialState: { pageIndex: 0, pageSize: 6 }
+            initialState: { pageIndex: 0, pageSize: 5 }
         },
         useSortBy,           // hook for getting sorting capability
         usePagination,       // hook for setting pagination
