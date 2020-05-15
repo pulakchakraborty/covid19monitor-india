@@ -1,6 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import useSWR from 'swr';
-import lookup from 'country-code-lookup';
+import React, { Fragment, useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 
 import '../styles/App.scss';
@@ -10,21 +8,21 @@ import CoronaMap from './CoronaMap';
 import SidePanel from './SidePanel';
 
 const WidgetWrapper = () => {
-    const { indiaLatest, jhucsse } = config;
+    const { indiaLatest, jhucsse, countriesLatest } = config;
     const [ data, setData ] = useState({});
     const [ summary, setSummary ] = useState({ total: 0, deaths: 0, discharged: 0 });
     const [ tableData, setTableData ] = useState([]);
     const [ errorMessage, setErrorMessage ] = useState('');
     const [ hasError, setHasError ] = useState(false);
-    const [ mapFilter, setMapFilter ] = useState('India');
+    const [ isMapIndia, setisMapIndia ] = useState(true);
 
-    const switchMap = (mapName) => {
-        setMapFilter(mapName);
+    const switchMap = (flag) => {
+        setisMapIndia(flag);
     }
 
     //console.log(`data widget wrapper: ${data}`);
     useEffect(() => {
-        if (mapFilter === 'India') {
+        if (isMapIndia) {
             const fetchData = async() => {
                 try {
                     const { data: responseLatest, status: statusLatest } = await axios.get(indiaLatest);
@@ -58,13 +56,13 @@ const WidgetWrapper = () => {
                     }
                 }
             }
-            console.log(`mapFilter value: ${mapFilter}`)
+            console.log(`mapFilter value: ${isMapIndia}`)
             fetchData();
         } else {
-            console.log(`mapFilter value: ${mapFilter}`)
+            console.log(`mapFilter value: ${isMapIndia}`)
             const fetchData = async() => {
                 try {
-                    const { data: responseLatest, status: statusLatest } = await axios.get(jhucsse);
+                    const { data: responseLatest, status: statusLatest } = await axios.get(countriesLatest);
                     if (statusLatest === 200) {
                         //const response = responseLatest.data;
                         setData(
@@ -73,22 +71,22 @@ const WidgetWrapper = () => {
                                 geometry: {
                                     type: "Point",
                                     coordinates: [
-                                        point.coordinates.longitude,
-                                        point.coordinates.latitude
+                                        point.countryInfo.long,
+                                        point.countryInfo.lat
                                     ]
                                 },
                                 properties: {
                                     id: index,
                                     country: point.country,
-                                    province: point.province,
-                                    confirmed: point.stats.confirmed,
-                                    dead: point.stats.deaths,
-                                    recovered: point.stats.recovered
+                                    province: null,
+                                    confirmed: point.cases,
+                                    dead: point.deaths,
+                                    recovered: point.recovered
                                 }
                             }))
                         );
                         //setSummary(responseLatest.data.summary);
-                        //setTableData(responseLatest.data.regional);
+                        setTableData(responseLatest);
                     }
 
                 } catch(e) {
@@ -98,15 +96,19 @@ const WidgetWrapper = () => {
                     }
                 }
             }
-            console.log(`mapFilter value: ${mapFilter}`)
+            console.log(`mapFilter value: ${data}`)
             fetchData();
         }
-    }, [mapFilter]);
+    }, [isMapIndia]);
 
     return(
         <Fragment>
             <CoronaMap data={data} error={errorMessage} />
-            <SidePanel summary={summary} summaryContext={mapFilter} tableData={tableData} mapFilter={switchMap} />
+            <SidePanel
+                summary={summary}
+                mapSummary={isMapIndia}
+                tableData={tableData}
+                mapFilter={switchMap} />
         </Fragment>
     );
 };

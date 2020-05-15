@@ -29,7 +29,7 @@ const Container = styled.div`
     padding: 0.5em 0.25em 0.35em;
 `
 
-const MapFilter = ({ mapFilter }) => {
+const MapFilter = ({ isMapIndia }) => {
     const [ buttons, setButtons ] = useState({
         isIndiaActive: true,
         isWorldActive: false
@@ -37,9 +37,9 @@ const MapFilter = ({ mapFilter }) => {
 
     useEffect(() => {
         if (buttons.isIndiaActive) {
-            mapFilter('India');
+            isMapIndia(true);
         } else {
-            mapFilter('World');
+            isMapIndia(false);
         }
     }, [buttons]);
 

@@ -79,7 +79,8 @@ const CoronaMap = ({ data }) => {
             container: mapboxRef.current,
             style: "mapbox://styles/mapbox/dark-v10",   // theme of the map
             center: [76.33643, 22.54930],   // initial geo location
-            maxBounds: bounds    // restrict map panning to an area
+            //maxBounds: bounds    // restrict map panning to an area
+            zoom: 4
         });
 
         // Add navigation controls to the top right of the canvas
