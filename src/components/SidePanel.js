@@ -27,10 +27,10 @@ const Styles = styled.div`
 
 `
 
-const SidePanel = () => {
+const SidePanel = ({ summary, tableData }) => {
     const [ indiaCases, setIndiaCases ] = useState({});
-    const [ summary, setSummary ] = useState({ total: 0, deaths: 0, discharged: 0 });
-    const [ tableData, setTableData ] = useState([]);
+    //const [ summary, setSummary ] = useState({ total: 0, deaths: 0, discharged: 0 });
+    //const [ tableData, setTableData ] = useState([]);
     const [ indiaHistorical, setIndiaHistorical ] = useState([]);
     const [ errorMessage, setErrorMessage ] = useState('');
     const [ hasError, setHasError ] = useState(false);
@@ -48,13 +48,13 @@ const SidePanel = () => {
     useEffect(() => {
         const fecthLatestData = async () => {
             try {
-                const { data: responseLatest, status: statusLatest } = await axios.get(indiaLatest);
+                /*const { data: responseLatest, status: statusLatest } = await axios.get(indiaLatest);
                 if (statusLatest === 200) {
                     setIndiaCases(responseLatest.data);
                     setSummary(responseLatest.data.summary);
                     setTableData(responseLatest.data.regional);
                 }
-
+                */
                 const { data: responseHistory, status: statusHistory } = await axios.get(indiaHistory);
                 if (statusHistory === 200) {
                     setIndiaHistorical(responseHistory.data);
