@@ -79,13 +79,13 @@ const Styles = styled.div`
 }
 `
 
-const CasesHighlights = (props) => {
-    const { total, discharged, deaths } = props.summary;
+const CasesHighlights = ({ summary, summaryContext }) => {
+    const { total, discharged, deaths } = summary;
     return(
         <Styles>
             <div className="cases-highlights-wrapper">
                 <div className="cases-highlights-header">
-                    <div className="highlights-header-title">Coronavirus Cases in India</div>
+                    <div className="highlights-header-title">Coronavirus Cases in {summaryContext}</div>
                     <div className="highlights-header-timestamp">
                         <strong>As of:</strong> {getCurrentTimestamp()}
                     </div>

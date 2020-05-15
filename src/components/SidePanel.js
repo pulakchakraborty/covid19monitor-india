@@ -28,7 +28,7 @@ const Styles = styled.div`
 
 `
 
-const SidePanel = ({ summary, tableData, mapFilter }) => {
+const SidePanel = ({ summary, summaryContext, tableData, mapFilter }) => {
     const [ indiaCases, setIndiaCases ] = useState({});
     //const [ summary, setSummary ] = useState({ total: 0, deaths: 0, discharged: 0 });
     //const [ tableData, setTableData ] = useState([]);
@@ -76,7 +76,7 @@ const SidePanel = ({ summary, tableData, mapFilter }) => {
     return(
         <Styles>
             <MapFilter mapFilter={switchMap} />
-            <CasesHighlights summary={summary} />
+            <CasesHighlights summary={summary} summaryContext={summaryContext} />
             <SwitchWrapper switchChart={switchChart} />
             {newInfectionsChart
                 ? <InfectionsChart chartData={indiaHistorical} />

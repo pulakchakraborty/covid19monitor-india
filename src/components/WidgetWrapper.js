@@ -106,7 +106,7 @@ const WidgetWrapper = () => {
     return(
         <Fragment>
             <CoronaMap data={data} error={errorMessage} />
-            <SidePanel summary={summary} tableData={tableData} mapFilter={switchMap} />
+            <SidePanel summary={summary} summaryContext={mapFilter} tableData={tableData} mapFilter={switchMap} />
         </Fragment>
     );
 };
