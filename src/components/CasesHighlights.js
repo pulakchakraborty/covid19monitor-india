@@ -80,7 +80,7 @@ const Styles = styled.div`
 `
 
 const CasesHighlights = ({ summary, mapSummary }) => {
-    const { total, discharged, deaths } = summary;
+    const { confirmed, recovered, dead } = summary;
     return(
         <Styles>
             <div className="cases-highlights-wrapper">
@@ -92,15 +92,15 @@ const CasesHighlights = ({ summary, mapSummary }) => {
                 </div>
                 <div className="cases-highlights-stats">
                     <div className="highlights-stats-confirmed">
-                        <div className="highlights-stats-number">{total}</div>
+                        <div className="highlights-stats-number">{confirmed}</div>
                         <div className="highlights-stats-type">confirmed</div>
                     </div>
                     <div className="highlights-stats-recovered">
-                        <div className="highlights-stats-number">{discharged}</div>
+                        <div className="highlights-stats-number">{recovered}</div>
                         <div className="highlights-stats-type">recovered</div>
                     </div>
                     <div className="highlights-stats-dead">
-                        <div className="highlights-stats-number">{deaths}</div>
+                        <div className="highlights-stats-number">{dead}</div>
                         <div className="highlights-stats-type">dead</div>
                     </div>
                 </div>
