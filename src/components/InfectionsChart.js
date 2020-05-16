@@ -15,23 +15,16 @@ const Styles = styled.div`
 `
 
 const InfectionsChart = ({ chartData }) => {
-    const dataArr = chartData.slice(1).map((data, index) => {
-        return{
-            index: data.day,
-            newInfections: data.summary.total - chartData[index].summary.total
-        };
-    });
-
     return(
         <Styles>
             <ResponsiveContainer>
                 <BarChart
-                    data={dataArr}
+                    data={chartData}
                     margin={{
                         top: 10, right: 20, left: 10, bottom: 0,
                     }}
                 >
-                    <XAxis dataKey="index" />
+                    <XAxis dataKey="day" />
                     <YAxis
                         type="number"
                         tickSize={6}

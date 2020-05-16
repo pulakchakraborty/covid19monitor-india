@@ -15,24 +15,16 @@ const Styles = styled.div`
 `
 
 const CasesChart = ({ chartData }) => {
-    const dataArr = chartData.map((data, index) => {
-        return {index: data.day,
-            confirmed: data.summary.total,
-            recovered: data.summary.discharged,
-            dead: data.summary.deaths
-        }
-    });
-
     return(
         <Styles>
             <ResponsiveContainer>
                 <AreaChart
-                    data={dataArr}
+                    data={chartData}
                     margin={{
                         top: 10, right: 20, left: 10, bottom: 0,
                     }}
                 >
-                    <XAxis dataKey="index" />
+                    <XAxis dataKey="day" />
                     <YAxis
                         type="number"
                         tickCount={2}
