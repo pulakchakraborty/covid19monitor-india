@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useMemo } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
 import '../styles/App.scss';
