@@ -12,7 +12,7 @@ const WidgetWrapper = () => {
         countriesLatest,
         allSummary } = config;
     const [ data, setData ] = useState({});
-    const [ summary, setSummary ] = useState({ confimred: 0, dead: 0, recovered: 0 });
+    const [ summary, setSummary ] = useState({ confirmed: 0, dead: 0, recovered: 0 });
     const [ tableData, setTableData ] = useState([]);
     const [ errorMessage, setErrorMessage ] = useState('');
     const [ hasError, setHasError ] = useState(false);
