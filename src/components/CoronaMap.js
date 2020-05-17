@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import lookup from 'country-code-lookup';
+import styled from 'styled-components';
 
-import '../styles/App.scss';
 import { mapLayerConfirmed } from '../config/map/mapLayerConfirmed';
 import { mapLayerRecovered } from '../config/map/mapLayerRecovered';
 import { mapLayerDead } from '../config/map/mapLayerDead';
@@ -11,6 +11,16 @@ import { mapLayerDead } from '../config/map/mapLayerDead';
 import "mapbox-gl/dist/mapbox-gl.css";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN;
+
+const MapContainer = styled.div`
+    width: 100%;
+    height: 100%;
+`
+
+const MapBox = styled.div`
+    width: 100%;
+    height: 100%;
+`
 
 const CoronaMap = ({ data }) => {
     const mapboxRef = useRef(null); // DOM element to render map
@@ -172,10 +182,10 @@ const CoronaMap = ({ data }) => {
     }, [data]);
 
     return(
-        <div className="mapContainer">
+        <MapContainer>
             {/* Assigned Mapbox container */}
-            <div className="mapBox" ref={mapboxRef} />
-        </div>
+            <MapBox ref={mapboxRef} />
+        </MapContainer>
     );
 }
 

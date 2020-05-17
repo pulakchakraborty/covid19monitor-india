@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
-import '../styles/App.scss';
 import config from '../config';
 import { StatesLatLong } from '../config/StatesLatLong';
 import CoronaMap from './CoronaMap';

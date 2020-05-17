@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Styles = styled.div`
     padding: 1rem;
     width: 95%;
-    height: 180px;
+    height: 220px;
     .recharts-cartesian-axis-ticks {
         font-size: 0.7rem;
     }

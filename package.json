@@ -12,14 +12,12 @@
     "country-code-lookup": "0.0.17",
     "date-fns": "^2.13.0",
     "mapbox-gl": "^1.10.0",
-    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "react-table": "^7.0.4",
     "recharts": "^1.8.5",
-    "styled-components": "^5.1.0",
-    "swr": "^0.2.0"
+    "styled-components": "^5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
