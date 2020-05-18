@@ -6,7 +6,8 @@ const Styles = styled.div`
     .header {
         margin: 10px;
         background: transparent;
-        position: absolute;
+        position: fixed;
+        top: 0;
         z-index: 1000;
         height: 32px;
         width: 100%;

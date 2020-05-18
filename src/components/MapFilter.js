@@ -6,8 +6,6 @@ const Button = styled.button`
     border-radius: 4px;
     border: 2px solid #d14f69;
     color: #d14f69;
-    /*margin: 0.5em 1em;*/
-    /*padding: 0.25em 1em;*/
     width: 25%;
     height: 2.5rem;
     font-size: 1.5rem;
@@ -42,6 +40,31 @@ const Container = styled.div`
     display: flex;
     justify-content: space-evenly;
     padding: 0.5em 0.25em 0.35em;
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    background: transparent;
+    opacity: 1;
+
+    @media (min-width: 768px) {
+        width: 420px;
+        right: auto;
+        left: 15px;
+        top: 50px;
+        background: black;
+        border-radius: 4px;
+        opacity: 0.85;
+    }
+
+    @media (min-width: 1024px) {
+        width: 420px;
+        right: auto;
+        left: 15px;
+        top: 50px;
+        background: black;
+        border-radius: 4px;
+        opacity: 0.85;
+    }
 `
 
 const MapFilter = ({ isMapIndia }) => {
