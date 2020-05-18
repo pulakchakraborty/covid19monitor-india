@@ -7,10 +7,20 @@ const Styles = styled.div`
 
     .table-container {
         margin: 0;
+        margin-left: 10%;
+        margin-right: 10%;
         font-size: 0.9rem;
         overflow: hidden;
         transition: opacity 0.3s ease;
         position: relative;
+
+        @media (min-width: 768px) {
+            margin: 0;
+        }
+
+        @media (min-width: 1024px) {
+            margin: 0;
+        }
 
         .table {
             display: inline-block;

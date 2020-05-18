@@ -14,12 +14,28 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOXGL_ACCESS_TOKEN;
 
 const MapContainer = styled.div`
     width: 100%;
-    height: 100%;
+    height: 512px;
+
+    @media (min-width: 768px) {
+        height: 100%;
+    }
+
+    @media (min-width: 1024px) {
+        height: 100%;
+    }
 `
 
 const MapBox = styled.div`
     width: 100%;
-    height: 100%;
+    height: 512px;
+
+    @media (min-width: 768px) {
+        height: 100%;
+    }
+
+    @media (min-width: 1024px) {
+        height: 100%;
+    }
 `
 
 const CoronaMap = ({ data }) => {

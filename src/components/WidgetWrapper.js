@@ -61,7 +61,6 @@ const WidgetWrapper = () => {
                     }
                 }
             }
-            console.log(`mapFilter value: ${isMapIndia}`)
             fetchData();
         } else {
             console.log(`mapFilter value: ${isMapIndia}`)
@@ -90,16 +89,16 @@ const WidgetWrapper = () => {
                                 }
                             }))
                         );
-                        //setSummary(responseLatest.data.summary);
                         setTableData(responseLatest);
-                        const { data: responseAllSummary, status: statusHistory } = await axios.get(allSummary);
-                        if (statusHistory === 200) {
-                            setSummary({
-                                confirmed: responseAllSummary.cases,
-                                dead: responseAllSummary.deaths,
-                                recovered: responseAllSummary.recovered
-                            });
-                        }
+                    }
+
+                    const { data: responseAllSummary, status: statusHistory } = await axios.get(allSummary);
+                    if (statusHistory === 200) {
+                        setSummary({
+                            confirmed: responseAllSummary.cases,
+                            dead: responseAllSummary.deaths,
+                            recovered: responseAllSummary.recovered
+                        });
                     }
 
                 } catch(e) {
@@ -109,7 +108,6 @@ const WidgetWrapper = () => {
                     }
                 }
             }
-            console.log(`mapFilter value: ${data}`)
             fetchData();
         }
     }, [isMapIndia]);
