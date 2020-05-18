@@ -4,23 +4,15 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
     padding: 1rem;
+    padding-top: 0;
 
     .table-container {
         margin: 0;
-        margin-left: 10%;
-        margin-right: 10%;
         font-size: 0.9rem;
-        overflow: hidden;
+        overflow-X: scroll;
         transition: opacity 0.3s ease;
         position: relative;
-
-        @media (min-width: 768px) {
-            margin: 0;
-        }
-
-        @media (min-width: 1024px) {
-            margin: 0;
-        }
+        text-align: center;
 
         .table {
             display: inline-block;
@@ -58,6 +50,7 @@ const Styles = styled.div`
 
         .pagination-container {
             padding: 0.25rem;
+            padding-top: 1rem;
         }
     }
 `
