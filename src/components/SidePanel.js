@@ -12,20 +12,37 @@ import InfectionsChart from './InfectionsChart';
 import MapFilter from './MapFilter';
 
 const Styles = styled.div`
-    margin: 10px;
     position: absolute;
     display: block;
-    height: 700px;
-    width: 420px;
-    right: auto;
-    left: 15px;
-    top: 50px;
-    border-radius: 4px;
+    height: 736px;
+    width: 100%;
+    top: 512px;
     background: black;
     color: dimgrey;
     justify-content: center;
     opacity: 0.85;
 
+    @media (min-width: 768px) {
+        width: 420px;
+        right: auto;
+        left: 15px;
+        position: absolute;
+        display: block;
+        height: 700px;
+        top: 50px;
+        border-radius: 4px;
+    }
+
+    @media (min-width: 1024px) {
+        width: 420px;
+        right: auto;
+        left: 15px;
+        position: absolute;
+        display: block;
+        height: 700px;
+        top: 50px;
+        border-radius: 4px;
+    }
 `
 
 const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
@@ -47,8 +64,6 @@ const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
     const isMapIndia = (flag) => {
         mapFilter(flag);
     };
-
-    console.log(`indiahistorical: ${indiaHistorical.length}`);
 
     useEffect(() => {
         const fetchLatestData = async () => {

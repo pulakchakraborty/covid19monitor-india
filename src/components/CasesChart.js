@@ -4,11 +4,21 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
     padding: 1rem;
-    width: 95%;
-    height: 180px;
+    width: 100%;
+    height: 256px;
+
+    @media (min-width: 768px) {
+        height: 220px;
+    }
+
+    @media (min-width: 1024px) {
+        height: 220px;
+    }
+
     .recharts-cartesian-axis-ticks {
         font-size: 0.7rem;
     }
+
     .recharts-legend-item-text {
         font-size: 0.9rem;
     }
