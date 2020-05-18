@@ -5,6 +5,7 @@ import config from '../config';
 import { StatesLatLong } from '../config/StatesLatLong';
 import CoronaMap from './CoronaMap';
 import SidePanel from './SidePanel';
+import MapFilter from './MapFilter';
 
 const WidgetWrapper = () => {
     const { indiaLatest,
@@ -115,6 +116,7 @@ const WidgetWrapper = () => {
     return(
         <Fragment>
             <CoronaMap data={data} error={errorMessage} />
+            <MapFilter isMapIndia={switchMap} />
             <SidePanel
                 summary={summary}
                 mapSummary={isMapIndia}

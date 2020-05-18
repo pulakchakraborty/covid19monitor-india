@@ -10,6 +10,14 @@ const AppStyle = styled.div`
     height: 100%;
     position: sticky;
     overflow-y: scroll;
+
+    @media (min-width: 768px) {
+        overflow-y: none;
+    }
+
+    @media (min-width: 1024px) {
+        overflow-y: none;
+    }
 `
 
 const App = () => {

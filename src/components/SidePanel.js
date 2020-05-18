@@ -14,9 +14,8 @@ import MapFilter from './MapFilter';
 const Styles = styled.div`
     position: absolute;
     display: block;
-    height: 736px;
+    height: 700px;
     width: 100%;
-    top: 512px;
     background: black;
     color: dimgrey;
     justify-content: center;
@@ -28,8 +27,8 @@ const Styles = styled.div`
         left: 15px;
         position: absolute;
         display: block;
-        height: 700px;
-        top: 50px;
+        height: 646px;
+        top: 104px;
         border-radius: 4px;
     }
 
@@ -39,8 +38,8 @@ const Styles = styled.div`
         left: 15px;
         position: absolute;
         display: block;
-        height: 700px;
-        top: 50px;
+        height: 646px;
+        top: 104px;
         border-radius: 4px;
     }
 `
@@ -61,9 +60,11 @@ const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
         setNewInfectionsChart(newInfections);
     };
 
+    /*
     const isMapIndia = (flag) => {
         mapFilter(flag);
     };
+    */
 
     useEffect(() => {
         const fetchLatestData = async () => {
@@ -117,7 +118,7 @@ const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
 
     return(
         <Styles>
-            <MapFilter isMapIndia={isMapIndia} />
+            {/*<MapFilter isMapIndia={isMapIndia} />*/}
             <CasesHighlights summary={summary} mapSummary={mapSummary} />
             <SwitchWrapper switchChart={switchChart} />
             {!mapSummary && newInfectionsChart && <InfectionsChart chartData={allHistorical} />}
