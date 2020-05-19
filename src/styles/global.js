@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     * {
@@ -53,5 +53,14 @@ export const GlobalStyle = createGlobalStyle`
     }
 
 `;
+
+export const PlaceholderText = styled.div`
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #d14f69;
+    text-align: center;
+    top: 50%;
+    position: relative;
+`
 
 export default GlobalStyle;

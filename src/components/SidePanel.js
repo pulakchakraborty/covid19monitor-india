@@ -1,15 +1,24 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
 import CasesHighlights from './CasesHighlights';
 import CasesTable from './CasesTable';
-import CasesChart from './CasesChart';
+//import CasesChart from './CasesChart';
 import config from '../config';
 import { TableSettingsIndia, TableSettingsWorld } from '../config/TableSettings';
 import SwitchWrapper from './SwitchWrapper';
-import InfectionsChart from './InfectionsChart';
-import MapFilter from './MapFilter';
+import { PlaceholderText } from '../styles/global';
+//import InfectionsChart from './InfectionsChart';
+//import MapFilter from './MapFilter';
+
+const CasesChart = lazy(() =>
+    import('./CasesChart')
+);
+
+const InfectionsChart = lazy(() =>
+    import('./InfectionsChart')
+);
 
 const Styles = styled.div`
     position: absolute;
@@ -43,6 +52,23 @@ const Styles = styled.div`
         border-radius: 4px;
     }
 `
+
+const ChartPlaceHolder = styled.div`
+    padding: 1rem;
+    width: 100%;
+    height: 256px;
+    justify-content: center;
+
+    @media (min-width: 768px) {
+        height: 220px;
+    }
+
+    @media (min-width: 1024px) {
+        height: 220px;
+    }
+`
+
+const renderLoader = () => <ChartPlaceHolder><PlaceholderText>Loading chart...</PlaceholderText></ChartPlaceHolder>;
 
 const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
     const [ indiaHistorical, setIndiaHistorical ] = useState([]);
@@ -121,10 +147,12 @@ const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
             {/*<MapFilter isMapIndia={isMapIndia} />*/}
             <CasesHighlights summary={summary} mapSummary={mapSummary} />
             <SwitchWrapper switchChart={switchChart} />
-            {!mapSummary && newInfectionsChart && <InfectionsChart chartData={allHistorical} />}
-            {!mapSummary && !newInfectionsChart && <CasesChart chartData={allHistorical} />}
-            {mapSummary && newInfectionsChart && <InfectionsChart chartData={indiaHistorical} />}
-            {mapSummary && !newInfectionsChart && <CasesChart chartData={indiaHistorical} />}
+            <Suspense fallback={renderLoader()}>
+                {!mapSummary && newInfectionsChart && <InfectionsChart chartData={allHistorical} />}
+                {mapSummary && newInfectionsChart && <InfectionsChart chartData={indiaHistorical} />}
+                {!mapSummary && !newInfectionsChart && <CasesChart chartData={allHistorical} />}
+                {mapSummary && !newInfectionsChart && <CasesChart chartData={indiaHistorical} />}
+            </Suspense>
             {mapSummary
                 ? <CasesTable columns={tableColumnsIndia} data={tableData} />
                 : <CasesTable columns={tableColumnsWorld} data={tableData} />

@@ -41,58 +41,6 @@ const MapBox = styled.div`
 const CoronaMap = ({ data }) => {
     const mapboxRef = useRef(null); // DOM element to render map
 
-    // Conversion of fetched data to mapbox geojson formatted data
-    /*
-    const fetcher = url =>
-        fetch(url)
-            .then(r => r.json())
-            .then(data =>
-                data.map((point, index) => ({
-                    type: "Feature",
-                    geometry: {
-                        type: "Point",
-                        coordinates: [
-                            point.coordinates.longitude,
-                            point.coordinates.latitude
-                        ]
-                    },
-                    properties: {
-                        id: index,
-                        country: point.country,
-                        province: point.province,
-                        confirmed: point.stats.confirmed,
-                        dead: point.stats.deaths,
-                        recovered: point.stats.recovered
-                    }
-                }))
-            );
-    */
-   /*const fetcher = async (url) =>
-        await fetch(url)
-            .then(r => r.json())
-            .then(response => response.data.regional)
-            .then(states =>
-                states.map((point, index) => ({
-                    type: "Feature",
-                    geometry: {
-                        type: "Point",
-                        coordinates: StatesLatLong.find(state => state.name === point.loc).location
-                    },
-                    properties: {
-                        id: index,
-                        country: "India",
-                        province: point.loc,
-                        confirmed: point.totalConfirmed,
-                        dead: point.deaths,
-                        recovered: point.discharged
-                    }
-                }))
-            );
-    */
-    // Use swr from Zeit to fetch data from API
-    //const { data, error } = useSWR(indiaLatest, fetcher);
-    //console.log(`data coronamap: ${data}`);
-
     // Initialize the map
     useEffect(() => {
         //console.log(`data- coronamap- useeffect: ${data}`);
