@@ -1,11 +1,20 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, lazy } from 'react';
 import axios from 'axios';
 
 import config from '../config';
 import { StatesLatLong } from '../config/StatesLatLong';
-import CoronaMap from './CoronaMap';
-import SidePanel from './SidePanel';
-import MapFilter from './MapFilter';
+
+const CoronaMap = lazy(() =>
+    import('./CoronaMap')
+);
+
+const SidePanel = lazy(() =>
+    import('./SidePanel')
+);
+
+const MapFilter = lazy(() =>
+    import('./MapFilter')
+);
 
 const WidgetWrapper = () => {
     const { indiaLatest,
