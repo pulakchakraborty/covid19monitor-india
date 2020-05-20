@@ -4,14 +4,17 @@ import styled, { css } from 'styled-components';
 const Button = styled.button`
     background: transparent;
     border-radius: 4px;
+    /*
     border: 2px solid #d14f69;
-    color: #d14f69;
+    color: #d14f69;*/
+    border: 2px solid #ff073a;
+    color: #ff073a;
     width: 25%;
     height: 2.5rem;
     font-size: 1.5rem;
     font-weight: 500;
     text-align: center;
-    opacity: 0.5;
+    opacity: 0.55;
     cursor: pointer;
     pointer-events: all;
 
@@ -24,15 +27,18 @@ const Button = styled.button`
     /* inverse colors on mouse-over */
     &:hover,
     &:focus {
-        color: #e63c5e;
-        border-color: #e63c5e;
-        background: rgba(209,79,105,0.2);
+        color: #ff073a;
+        border-color: #ff073a;
+        background: rgba(255,7,58,0.25);
         opacity: 1;
     }
 
     ${props => props.isActive && css`
+        background-color: rgba(255,7,58,0.1);
+        color: #ff073a;
+        /*
         background: rgba(209,79,105,0.2);
-        color: #d14f69;
+        color: #d14f69;*/
         opacity: 1;
     `}
 `

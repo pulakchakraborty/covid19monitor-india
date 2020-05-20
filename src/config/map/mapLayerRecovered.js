@@ -4,7 +4,7 @@ export const mapLayerRecovered = {
     type: "circle",
     // paint properties
     paint: {
-        "circle-opacity": 0.75,
+        "circle-opacity": 1,
         /*"circle-stroke-width": [
             "interpolate",
             ["linear"],
@@ -25,6 +25,7 @@ export const mapLayerRecovered = {
             12000, 36,
             100000, 80
         ],
-        "circle-color": "#108d90"
+        "circle-color": "rgba(40,167,69,0.5)"
+        /*"circle-color": "#28a745"*/
     }
 };

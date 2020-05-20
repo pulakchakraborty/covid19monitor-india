@@ -4,7 +4,7 @@ export const mapLayerConfirmed = {
     type: "circle",
     // paint properties
     paint: {
-        "circle-opacity": 0.75,
+        "circle-opacity": 1,
         /*"circle-stroke-width": [
             "interpolate",
             ["linear"],
@@ -24,6 +24,7 @@ export const mapLayerConfirmed = {
             12000, 45,
             100000, 100
         ],
-        "circle-color": "#d14f69"
+        "circle-color": "rgba(255,7,58,0.5)"
+        /*"circle-color": "#ff073a"*/
     }
 };

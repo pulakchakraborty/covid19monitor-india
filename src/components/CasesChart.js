@@ -43,8 +43,8 @@ const CasesChart = ({ chartData }) => {
                         domain={[0, 'dataMax']} />
                     <Tooltip />
                     <Legend />
-                    <Area type="monotone" dataKey="confirmed" stackId="1" stroke="#d14f69" fill="rgba(209,79,105,0.2)" />
-                    <Area type="monotone" dataKey="recovered" stackId="2" stroke="#108d90" fill="rgba(129,255,202,0.3)" />
+                    <Area type="monotone" dataKey="confirmed" stackId="1" stroke="#ff073a" fill="rgba(255,7,58,0.1)" />
+                    <Area type="monotone" dataKey="recovered" stackId="2" stroke="#28a745" fill="rgba(40,167,69,0.1)" />
                     <Area type="monotone" dataKey="dead" stackId="3" stroke="rgb(63, 59, 59)" fill="grey" />
                 </AreaChart>
             </ResponsiveContainer>

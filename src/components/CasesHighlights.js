@@ -41,8 +41,10 @@ const Styles = styled.div`
         border-radius: 4px;
         font-family: 'Roboto Condensed', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         text-align: center;
-        background-color: rgba(209,79,105,0.2);
-        color: #d14f69;
+        /*background-color: rgba(209,79,105,0.2);
+        color: #d14f69;*/
+        background-color: rgba(255,7,58,0.1);
+        color: #ff073a;
     }
 
     .highlights-stats-recovered {
@@ -50,8 +52,10 @@ const Styles = styled.div`
         border-radius: 4px;
         font-family: 'Roboto Condensed', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         text-align: center;
-        background-color: rgba(129,255,202,0.3);
-        color: #108d90;
+        /*background-color: rgba(129,255,202,0.3);
+        color: #108d90;*/
+        background-color: rgba(40,167,69,0.1);
+        color: #28a745;
     }
 
     .highlights-stats-dead {
@@ -59,9 +63,9 @@ const Styles = styled.div`
         border-radius: 4px;
         font-family: 'Roboto Condensed', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         text-align: center;
-        //background-color: rgba(48,36,45,0.15);
-        //color: grey;
-        background-color: rgb(63, 59, 59);
+        /*background-color: rgba(48,36,45,0.15);
+        color: grey;*/
+        background-color: rgb(63,59,59);
         color: black;
     }
 

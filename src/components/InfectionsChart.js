@@ -42,7 +42,7 @@ const InfectionsChart = ({ chartData }) => {
                     />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="newInfections" fill="#d14f69" stroke="rgba(209,79,105,0.2)" />
+                    <Bar dataKey="newInfections" fill="#ff073a" stroke="rgba(255,7,58,0.1)" />
                 </BarChart>
             </ResponsiveContainer>
         </Styles>

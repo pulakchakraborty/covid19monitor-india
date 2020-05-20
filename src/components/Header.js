@@ -19,7 +19,7 @@ const Styles = styled.div`
             margin-left: auto;
             display: inline-block;
             position: relative;
-            color: #d14f69;
+            color: #ff073a;
             font-size: 1.3rem;
             font-weight: 600;
       }
@@ -33,7 +33,7 @@ const Styles = styled.div`
         }
 
         .header-link {
-            color: #d14f69;
+            color: #ff073a;
         }
 
     }
