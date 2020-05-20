@@ -4,6 +4,7 @@ import styled from 'styled-components';
 //import WidgetWrapper from './WidgetWrapper';
 //import Header from './Header';
 import GlobalStyle, { PlaceholderText } from '../styles/global';
+import Spinner from './Spinner';
 
 const Header = lazy(() =>
     import('./Header')
@@ -30,24 +31,14 @@ const AppStyle = styled.div`
 
 const AppPlaceholder = styled.div`
     position: fixed;
+    display: flex;
     background: black;
-    color: #d14f69;
     justify-content: center;
     opacity: 0.85;
     width: 100%;
     height: 100%;
 `
-
-/*const PlaceholderText = styled.div`
-    position: fixed;
-    top: 50%;
-    left: 48%;
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-align: center;
-`
-*/
-const renderLoader = () => <AppPlaceholder><PlaceholderText>Loading...</PlaceholderText></AppPlaceholder>;
+const renderLoader = () => <AppPlaceholder><Spinner /></AppPlaceholder>;
 
 const App = () => {
     return(
