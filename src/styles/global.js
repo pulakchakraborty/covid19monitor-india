@@ -58,6 +58,7 @@ export const PlaceholderText = styled.div`
     font-size: 1.5rem;
     font-weight: 600;
     color: #d14f69;
+    justify-content: center;
     text-align: center;
     top: 50%;
     position: relative;

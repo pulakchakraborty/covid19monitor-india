@@ -9,6 +9,7 @@ import config from '../config';
 import { TableSettingsIndia, TableSettingsWorld } from '../config/TableSettings';
 import SwitchWrapper from './SwitchWrapper';
 import { PlaceholderText } from '../styles/global';
+import Spinner from './Spinner';
 //import InfectionsChart from './InfectionsChart';
 //import MapFilter from './MapFilter';
 
@@ -57,6 +58,7 @@ const ChartPlaceHolder = styled.div`
     padding: 1rem;
     width: 100%;
     height: 256px;
+    display: flex;
     justify-content: center;
 
     @media (min-width: 768px) {
@@ -68,7 +70,10 @@ const ChartPlaceHolder = styled.div`
     }
 `
 
-const renderLoader = () => <ChartPlaceHolder><PlaceholderText>Loading chart...</PlaceholderText></ChartPlaceHolder>;
+const renderFallbackText = () => <ChartPlaceHolder><PlaceholderText>Loading chart...</PlaceholderText></ChartPlaceHolder>;
+
+const renderLoader = () => <ChartPlaceHolder><Spinner /></ChartPlaceHolder>;
+
 
 const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
     const [ indiaHistorical, setIndiaHistorical ] = useState([]);
