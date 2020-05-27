@@ -24,7 +24,6 @@ const WidgetWrapper = () => {
     const [ summary, setSummary ] = useState({ confirmed: 0, dead: 0, recovered: 0 });
     const [ tableData, setTableData ] = useState([]);
     const [ errorMessage, setErrorMessage ] = useState('');
-    const [ hasError, setHasError ] = useState(false);
     const [ isMapIndia, setisMapIndia ] = useState(true);
 
     const switchMap = (flag) => {
@@ -66,7 +65,6 @@ const WidgetWrapper = () => {
 
                 } catch(e) {
                     if (e.response) {
-                        setHasError(true);
                         setErrorMessage(e.response.data.message);
                     }
                 }
@@ -113,7 +111,6 @@ const WidgetWrapper = () => {
 
                 } catch(e) {
                     if (e.response) {
-                        setHasError(true);
                         setErrorMessage(e.response.data.message);
                     }
                 }
@@ -130,7 +127,7 @@ const WidgetWrapper = () => {
                 summary={summary}
                 mapSummary={isMapIndia}
                 tableData={tableData}
-                mapFilter={switchMap} />
+            />
         </Fragment>
     );
 };

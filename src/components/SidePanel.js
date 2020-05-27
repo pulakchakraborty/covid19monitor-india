@@ -7,7 +7,7 @@ import CasesTable from './CasesTable';
 //import CasesChart from './CasesChart';
 import config from '../config';
 import { TableSettingsIndia, TableSettingsWorld } from '../config/TableSettings';
-import SwitchWrapper from './SwitchWrapper';
+import SwitchChartWrapper from './SwitchChartWrapper';
 import { PlaceholderText } from '../styles/global';
 import Spinner from './Spinner';
 //import InfectionsChart from './InfectionsChart';
@@ -75,27 +75,16 @@ const renderFallbackText = () => <ChartPlaceHolder><PlaceholderText>Loading char
 const renderLoader = () => <ChartPlaceHolder><Spinner /></ChartPlaceHolder>;
 
 
-const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
+const SidePanel = ({ summary, mapSummary, tableData }) => {
     const [ indiaHistorical, setIndiaHistorical ] = useState([]);
     const [ allHistorical, setAllHistorical ] = useState([]);
     const [ errorMessage, setErrorMessage ] = useState('');
-    const [ hasError, setHasError ] = useState(false);
     const [ newInfectionsChart, setNewInfectionsChart ] = useState(false);
 
     const { indiaHistory, allHistory } = config;
 
     const tableColumnsIndia = useMemo(() => [{...TableSettingsIndia}], []);
     const tableColumnsWorld = useMemo(() => [{...TableSettingsWorld}], []);
-
-    const switchChart = (newInfections) => {
-        setNewInfectionsChart(newInfections);
-    };
-
-    /*
-    const isMapIndia = (flag) => {
-        mapFilter(flag);
-    };
-    */
 
     useEffect(() => {
         const fetchLatestData = async () => {
@@ -139,7 +128,6 @@ const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
                 }
             } catch(e) {
                 if (e.response) {
-                    setHasError(true);
                     setErrorMessage(e.response.data.message);
                 }
             }
@@ -149,9 +137,11 @@ const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
 
     return(
         <Styles>
-            {/*<MapFilter isMapIndia={isMapIndia} />*/}
             <CasesHighlights summary={summary} mapSummary={mapSummary} />
-            <SwitchWrapper switchChart={switchChart} />
+            <SwitchChartWrapper
+                newInfectionsChart={newInfectionsChart}
+                setNewInfectionsChart={setNewInfectionsChart}
+            />
             <Suspense fallback={renderLoader()}>
                 {!mapSummary && newInfectionsChart && <InfectionsChart chartData={allHistorical} />}
                 {mapSummary && newInfectionsChart && <InfectionsChart chartData={indiaHistorical} />}

@@ -15,18 +15,7 @@ const Styles = styled.div`
     font-weight: 700;
 `
 
-const SwitchWrapper = ({ switchChart }) => {
-    const [state, setState] = useState({
-        checked: false,
-      });
-
-    const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
-    };
-
-    useEffect(() => {
-        switchChart(state.checked);
-    }, [switchChart, state.checked]);
+const SwitchChartWrapper = ({ newInfectionsChart, setNewInfectionsChart }) => {
 
     return(
         <Styles>
@@ -34,7 +23,10 @@ const SwitchWrapper = ({ switchChart }) => {
                 <Grid component="label" container alignItems="center" spacing={1}>
                 <Grid item>Total Counts</Grid>
                 <Grid item>
-                    <Switch checked={state.checked} onChange={handleChange} name="checked" />
+                    <Switch
+                        checked={newInfectionsChart}
+                        onChange={() => setNewInfectionsChart(newInfectionsChart => !newInfectionsChart)}
+                    />
                 </Grid>
                 <Grid item>New Infections</Grid>
                 </Grid>
@@ -43,4 +35,4 @@ const SwitchWrapper = ({ switchChart }) => {
     );
 }
 
-export default SwitchWrapper;
+export default SwitchChartWrapper;

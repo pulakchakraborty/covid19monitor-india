@@ -84,11 +84,11 @@ const MapFilter = ({ isMapIndia }) => {
     return(
         <Container>
             <Button
-                onClick={() => setButtons({ isIndiaActive: true, isWorldActive: false })}
+                onClick={() => setButtons({...buttons, isIndiaActive: true, isWorldActive: false })}
                 isActive={buttons.isIndiaActive}>India
             </Button>
             <Button
-                onClick={() => setButtons({ isIndiaActive: false, isWorldActive: true })}
+                onClick={() => setButtons({...buttons, isIndiaActive: false, isWorldActive: true })}
                 isActive={buttons.isWorldActive}>World
             </Button>
         </Container>
