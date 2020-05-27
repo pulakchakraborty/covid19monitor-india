@@ -75,7 +75,7 @@ const renderFallbackText = () => <ChartPlaceHolder><PlaceholderText>Loading char
 const renderLoader = () => <ChartPlaceHolder><Spinner /></ChartPlaceHolder>;
 
 
-const SidePanel = ({ summary, mapSummary, tableData }) => {
+const SidePanel = ({ summary, mapIsIndia, tableData }) => {
     const [ indiaHistorical, setIndiaHistorical ] = useState([]);
     const [ allHistorical, setAllHistorical ] = useState([]);
     const [ errorMessage, setErrorMessage ] = useState('');
@@ -96,7 +96,7 @@ const SidePanel = ({ summary, mapSummary, tableData }) => {
                     setTableData(responseLatest.data.regional);
                 }
                 */
-                if (mapSummary && indiaHistorical.length === 0) {
+                if (mapIsIndia && indiaHistorical.length === 0) {
                     const { data: responseHistory, status: statusHistory } = await axios.get(indiaHistory);
                     if (statusHistory === 200) {
                         setIndiaHistorical(
@@ -111,7 +111,7 @@ const SidePanel = ({ summary, mapSummary, tableData }) => {
                         );
                     }
                 }
-                if (!mapSummary && allHistorical.length === 0) {
+                if (!mapIsIndia && allHistorical.length === 0) {
                     const { data: responseAllHistory, status: statusAllHistory } = await axios.get(allHistory);
                     if (statusAllHistory === 200) {
                         setAllHistorical([
@@ -133,22 +133,22 @@ const SidePanel = ({ summary, mapSummary, tableData }) => {
             }
           };
           fetchLatestData();
-    }, [mapSummary]);
+    }, [mapIsIndia]);
 
     return(
         <Styles>
-            <CasesHighlights summary={summary} mapSummary={mapSummary} />
+            <CasesHighlights summary={summary} mapIsIndia={mapIsIndia} />
             <SwitchChartWrapper
                 newInfectionsChart={newInfectionsChart}
                 setNewInfectionsChart={setNewInfectionsChart}
             />
             <Suspense fallback={renderLoader()}>
-                {!mapSummary && newInfectionsChart && <InfectionsChart chartData={allHistorical} />}
-                {mapSummary && newInfectionsChart && <InfectionsChart chartData={indiaHistorical} />}
-                {!mapSummary && !newInfectionsChart && <CasesChart chartData={allHistorical} />}
-                {mapSummary && !newInfectionsChart && <CasesChart chartData={indiaHistorical} />}
+                {!mapIsIndia && newInfectionsChart && <InfectionsChart chartData={allHistorical} />}
+                {mapIsIndia && newInfectionsChart && <InfectionsChart chartData={indiaHistorical} />}
+                {!mapIsIndia && !newInfectionsChart && <CasesChart chartData={allHistorical} />}
+                {mapIsIndia && !newInfectionsChart && <CasesChart chartData={indiaHistorical} />}
             </Suspense>
-            {mapSummary
+            {mapIsIndia
                 ? <CasesTable columns={tableColumnsIndia} data={tableData} />
                 : <CasesTable columns={tableColumnsWorld} data={tableData} />
             }

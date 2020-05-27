@@ -79,13 +79,13 @@ const Styles = styled.div`
 }
 `
 
-const CasesHighlights = ({ summary, mapSummary }) => {
+const CasesHighlights = ({ summary, mapIsIndia }) => {
     const { confirmed, recovered, dead } = summary;
     return(
         <Styles>
             <div className="cases-highlights-wrapper">
                 <div className="cases-highlights-header">
-                    <div className="highlights-header-title">Coronavirus Cases in {mapSummary ? 'India' : 'the World'}</div>
+                    <div className="highlights-header-title">Coronavirus Cases in {mapIsIndia ? 'India' : 'the World'}</div>
                     <div className="highlights-header-timestamp">
                         <strong>As of:</strong> {getCurrentTimestamp()}
                     </div>

@@ -120,7 +120,7 @@ const WidgetWrapper = () => {
             <MapFilter  mapIsIndia={mapIsIndia} setMapIsIndia={setMapIsIndia} />
             <SidePanel
                 summary={summary}
-                mapSummary={mapIsIndia}
+                mapIsIndia={mapIsIndia}
                 tableData={tableData}
             />
         </Fragment>
