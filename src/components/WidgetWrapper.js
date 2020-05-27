@@ -24,15 +24,11 @@ const WidgetWrapper = () => {
     const [ summary, setSummary ] = useState({ confirmed: 0, dead: 0, recovered: 0 });
     const [ tableData, setTableData ] = useState([]);
     const [ errorMessage, setErrorMessage ] = useState('');
-    const [ isMapIndia, setisMapIndia ] = useState(true);
-
-    const switchMap = (flag) => {
-        setisMapIndia(flag);
-    }
+    const [ mapIsIndia, setMapIsIndia ] = useState(true);
 
     //console.log(`data widget wrapper: ${data}`);
     useEffect(() => {
-        if (isMapIndia) {
+        if (mapIsIndia) {
             const fetchData = async() => {
                 try {
                     const { data: responseLatest, status: statusLatest } = await axios.get(indiaLatest);
@@ -71,7 +67,6 @@ const WidgetWrapper = () => {
             }
             fetchData();
         } else {
-            console.log(`mapFilter value: ${isMapIndia}`)
             const fetchData = async() => {
                 try {
                     const { data: responseLatest, status: statusLatest } = await axios.get(countriesLatest);
@@ -117,15 +112,15 @@ const WidgetWrapper = () => {
             }
             fetchData();
         }
-    }, [isMapIndia]);
+    }, [mapIsIndia]);
 
     return(
         <Fragment>
             <CoronaMap data={data} error={errorMessage} />
-            <MapFilter isMapIndia={switchMap} />
+            <MapFilter  mapIsIndia={mapIsIndia} setMapIsIndia={setMapIsIndia} />
             <SidePanel
                 summary={summary}
-                mapSummary={isMapIndia}
+                mapSummary={mapIsIndia}
                 tableData={tableData}
             />
         </Fragment>
