@@ -67,29 +67,16 @@ const Container = styled.div`
     }
 `
 
-const MapFilter = ({ isMapIndia }) => {
-    const [ buttons, setButtons ] = useState({
-        isIndiaActive: true,
-        isWorldActive: false
-    });
-
-    useEffect(() => {
-        if (buttons.isIndiaActive) {
-            isMapIndia(true);
-        } else {
-            isMapIndia(false);
-        }
-    }, [buttons]);
-
+const MapFilter = ({ mapIsIndia, setMapIsIndia }) => {
     return(
         <Container>
             <Button
-                onClick={() => setButtons({ isIndiaActive: true, isWorldActive: false })}
-                isActive={buttons.isIndiaActive}>India
+                onClick={() => setMapIsIndia(true)}
+                isActive={mapIsIndia}>India
             </Button>
             <Button
-                onClick={() => setButtons({ isIndiaActive: false, isWorldActive: true })}
-                isActive={buttons.isWorldActive}>World
+                onClick={() => setMapIsIndia(false)}
+                isActive={!mapIsIndia}>World
             </Button>
         </Container>
     );

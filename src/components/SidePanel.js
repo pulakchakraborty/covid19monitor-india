@@ -3,15 +3,19 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 import CasesHighlights from './CasesHighlights';
-import CasesTable from './CasesTable';
+//import CasesTable from './CasesTable';
 //import CasesChart from './CasesChart';
 import config from '../config';
 import { TableSettingsIndia, TableSettingsWorld } from '../config/TableSettings';
-import SwitchWrapper from './SwitchWrapper';
+import SwitchChartWrapper from './SwitchChartWrapper';
 import { PlaceholderText } from '../styles/global';
 import Spinner from './Spinner';
 //import InfectionsChart from './InfectionsChart';
 //import MapFilter from './MapFilter';
+
+const CasesTable = lazy(() =>
+    import('./CasesTable')
+);
 
 const CasesChart = lazy(() =>
     import('./CasesChart')
@@ -75,27 +79,16 @@ const renderFallbackText = () => <ChartPlaceHolder><PlaceholderText>Loading char
 const renderLoader = () => <ChartPlaceHolder><Spinner /></ChartPlaceHolder>;
 
 
-const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
+const SidePanel = ({ summary, mapIsIndia, tableData }) => {
     const [ indiaHistorical, setIndiaHistorical ] = useState([]);
     const [ allHistorical, setAllHistorical ] = useState([]);
     const [ errorMessage, setErrorMessage ] = useState('');
-    const [ hasError, setHasError ] = useState(false);
     const [ newInfectionsChart, setNewInfectionsChart ] = useState(false);
 
     const { indiaHistory, allHistory } = config;
 
     const tableColumnsIndia = useMemo(() => [{...TableSettingsIndia}], []);
     const tableColumnsWorld = useMemo(() => [{...TableSettingsWorld}], []);
-
-    const switchChart = (newInfections) => {
-        setNewInfectionsChart(newInfections);
-    };
-
-    /*
-    const isMapIndia = (flag) => {
-        mapFilter(flag);
-    };
-    */
 
     useEffect(() => {
         const fetchLatestData = async () => {
@@ -107,7 +100,7 @@ const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
                     setTableData(responseLatest.data.regional);
                 }
                 */
-                if (mapSummary && indiaHistorical.length === 0) {
+                if (mapIsIndia && indiaHistorical.length === 0) {
                     const { data: responseHistory, status: statusHistory } = await axios.get(indiaHistory);
                     if (statusHistory === 200) {
                         setIndiaHistorical(
@@ -122,7 +115,7 @@ const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
                         );
                     }
                 }
-                if (!mapSummary && allHistorical.length === 0) {
+                if (!mapIsIndia && allHistorical.length === 0) {
                     const { data: responseAllHistory, status: statusAllHistory } = await axios.get(allHistory);
                     if (statusAllHistory === 200) {
                         setAllHistorical([
@@ -139,29 +132,32 @@ const SidePanel = ({ summary, mapSummary, tableData, mapFilter }) => {
                 }
             } catch(e) {
                 if (e.response) {
-                    setHasError(true);
                     setErrorMessage(e.response.data.message);
                 }
             }
           };
           fetchLatestData();
-    }, [mapSummary]);
+    }, [mapIsIndia]);
 
     return(
         <Styles>
-            {/*<MapFilter isMapIndia={isMapIndia} />*/}
-            <CasesHighlights summary={summary} mapSummary={mapSummary} />
-            <SwitchWrapper switchChart={switchChart} />
+            <CasesHighlights summary={summary} mapIsIndia={mapIsIndia} />
+            <SwitchChartWrapper
+                newInfectionsChart={newInfectionsChart}
+                setNewInfectionsChart={setNewInfectionsChart}
+            />
             <Suspense fallback={renderLoader()}>
-                {!mapSummary && newInfectionsChart && <InfectionsChart chartData={allHistorical} />}
-                {mapSummary && newInfectionsChart && <InfectionsChart chartData={indiaHistorical} />}
-                {!mapSummary && !newInfectionsChart && <CasesChart chartData={allHistorical} />}
-                {mapSummary && !newInfectionsChart && <CasesChart chartData={indiaHistorical} />}
+                {!mapIsIndia && newInfectionsChart && <InfectionsChart chartData={allHistorical} />}
+                {mapIsIndia && newInfectionsChart && <InfectionsChart chartData={indiaHistorical} />}
+                {!mapIsIndia && !newInfectionsChart && <CasesChart chartData={allHistorical} />}
+                {mapIsIndia && !newInfectionsChart && <CasesChart chartData={indiaHistorical} />}
             </Suspense>
-            {mapSummary
-                ? <CasesTable columns={tableColumnsIndia} data={tableData} />
-                : <CasesTable columns={tableColumnsWorld} data={tableData} />
-            }
+            <Suspense fallback={renderLoader()}>
+                {mapIsIndia
+                    ? <CasesTable columns={tableColumnsIndia} data={tableData} />
+                    : <CasesTable columns={tableColumnsWorld} data={tableData} />
+                }
+            </Suspense>
         </Styles>
     );
 
