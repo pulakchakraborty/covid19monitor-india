@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 import CasesHighlights from './CasesHighlights';
-import CasesTable from './CasesTable';
+//import CasesTable from './CasesTable';
 //import CasesChart from './CasesChart';
 import config from '../config';
 import { TableSettingsIndia, TableSettingsWorld } from '../config/TableSettings';
@@ -12,6 +12,10 @@ import { PlaceholderText } from '../styles/global';
 import Spinner from './Spinner';
 //import InfectionsChart from './InfectionsChart';
 //import MapFilter from './MapFilter';
+
+const CasesTable = lazy(() =>
+    import('./CasesTable')
+);
 
 const CasesChart = lazy(() =>
     import('./CasesChart')
@@ -148,10 +152,12 @@ const SidePanel = ({ summary, mapIsIndia, tableData }) => {
                 {!mapIsIndia && !newInfectionsChart && <CasesChart chartData={allHistorical} />}
                 {mapIsIndia && !newInfectionsChart && <CasesChart chartData={indiaHistorical} />}
             </Suspense>
-            {mapIsIndia
-                ? <CasesTable columns={tableColumnsIndia} data={tableData} />
-                : <CasesTable columns={tableColumnsWorld} data={tableData} />
-            }
+            <Suspense fallback={renderLoader()}>
+                {mapIsIndia
+                    ? <CasesTable columns={tableColumnsIndia} data={tableData} />
+                    : <CasesTable columns={tableColumnsWorld} data={tableData} />
+                }
+            </Suspense>
         </Styles>
     );
 
