@@ -2,61 +2,57 @@ import React from 'react';
 import styled from 'styled-components';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
-const Styles = styled.div`
-    .header {
-        margin: 10px;
-        background: transparent;
-        position: fixed;
-        top: 0;
-        z-index: 1000;
-        height: 32px;
-        width: 100%;
-        pointer-events: none;
-        display: flex;
-        padding: 8px 8px 8px 13px;
+const Nav = styled.div`
+    background: transparent;
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+`;
 
-        .header-headline {
-            margin-left: auto;
-            display: inline-block;
-            position: relative;
-            color: #d14f69;
-            font-size: 1.3rem;
-            font-weight: 600;
-      }
+const NavHeader = styled.div`
+    margin: 0 auto;
+    padding: 8px 8px 8px 13px;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    color: #d14f69;
+    font-size: 1.3rem;
+    font-weight: 600;
+`;
 
-        .header-social {
-            margin-left: auto;
-            margin-right: 10%;
-            padding-left: 8px;
-            cursor: pointer;
-            pointer-events: all;
-        }
+const NavLeft = styled.div`
+    width: 70%;
+    text-align: left;
+`;
 
-        .header-link {
-            color: #d14f69;
-        }
+const NavRight = styled.div`
+    width: 30%;
+    text-align: right;
+    pointer-events: all;
+    margin-top: 8px;
+    margin-right: 40px;
+`;
 
-    }
-`
+const MenuLink = styled.a`
+    color: #d14f69;
+`;
 
 const Header = () => {
     return(
-        <Styles>
-            <div className="header">
-                <div className="header-headline">
-                    Coronavirus Monitor
-                </div>
-                <div className="header-social">
-                    <a href="https://github.com/pulakchakraborty/c19-india-map"
+        <Nav>
+            <NavHeader>
+                <NavLeft>Coronavirus Monitor</NavLeft>
+                <NavRight>
+                    <MenuLink href="https://github.com/pulakchakraborty/c19-india-map"
                         target="_blank"
                         rel="noopener noreferrer"
                         title="Github"
-                        className="header-link">
-                            <GitHubIcon />
-                    </a>
-                </div>
-            </div>
-        </Styles>
+                    >
+                        <GitHubIcon />
+                    </MenuLink>
+                </NavRight>
+            </NavHeader>
+        </Nav>
     );
 };
 
