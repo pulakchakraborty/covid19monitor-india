@@ -75,7 +75,7 @@ const Container = styled.div`
         left: 15px;
         top: 50px;
         background: #121212;
-        border-radius: 4px;
+        border-radius: 4px 4px 0 0;
     }
 `
 
