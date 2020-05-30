@@ -30,10 +30,9 @@ const Styles = styled.div`
     display: block;
     height: 700px;
     width: 100%;
-    background: black;
-    color: dimgrey;
+    background: #121212;
+    color: #808080;
     justify-content: center;
-    opacity: 0.85;
 
     @media (min-width: 768px) {
         width: 420px;
@@ -42,8 +41,8 @@ const Styles = styled.div`
         position: absolute;
         display: block;
         height: 646px;
-        top: 104px;
-        border-radius: 4px;
+        top: 120px;
+        border-radius: 0 0 4px 4px;
     }
 
     @media (min-width: 1024px) {
@@ -53,8 +52,8 @@ const Styles = styled.div`
         position: absolute;
         display: block;
         height: 646px;
-        top: 104px;
-        border-radius: 4px;
+        top: 120px;
+        border-radius: 0 0 4px 4px;
     }
 `
 

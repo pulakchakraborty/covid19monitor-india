@@ -13,6 +13,7 @@ const Styles = styled.div`
 .cases-highlights-header {
     margin-bottom: 5px;
     box-sizing: border-box;
+    text-align: center;
 }
 
 .highlights-header-title {

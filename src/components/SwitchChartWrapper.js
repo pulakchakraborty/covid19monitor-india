@@ -10,8 +10,8 @@ const Styles = styled.div`
     padding: 0.1em 15px;
     display: flex;
     justify-content: center;
-    color: black;
-    background-color: rgb(63, 59, 59);
+    color: #808080;
+    background: #191919;
     font-weight: 700;
 `
 
@@ -21,14 +21,14 @@ const SwitchChartWrapper = ({ newInfectionsChart, setNewInfectionsChart }) => {
         <Styles>
             <FormGroup>
                 <Grid component="label" container alignItems="center" spacing={1}>
-                <Grid item>Total Counts</Grid>
+                <Grid item>Total</Grid>
                 <Grid item>
                     <Switch
                         checked={newInfectionsChart}
                         onChange={() => setNewInfectionsChart(newInfectionsChart => !newInfectionsChart)}
                     />
                 </Grid>
-                <Grid item>New Infections</Grid>
+                <Grid item>Cumulative</Grid>
                 </Grid>
             </FormGroup>
         </Styles>

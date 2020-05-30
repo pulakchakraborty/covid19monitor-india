@@ -6,7 +6,7 @@ const Button = styled.button`
     border-radius: 4px;
     border: 2px solid #d14f69;
     color: #d14f69;
-    width: 25%;
+    width: 50%;
     height: 2.5rem;
     font-size: 1.5rem;
     font-weight: 500;
@@ -14,6 +14,15 @@ const Button = styled.button`
     opacity: 0.5;
     cursor: pointer;
     pointer-events: all;
+    margin: 0.35em 0.25em 0.35em;
+
+    @media (min-width: 768px) {
+        width: 33%;
+    }
+
+    @media (min-width: 1024px) {
+        width: 33%;
+    }
 
     /* "down" effect on click */
     &:active {
@@ -42,28 +51,31 @@ const Container = styled.div`
     padding: 0.5em 0.25em 0.35em;
     position: fixed;
     top: 50px;
-    width: 100%;
-    background: transparent;
+    width: 50%;
+    margin-right: 25%;
+    margin-left: 25%;
+    background: #191919;
     opacity: 1;
+    border-radius: 4px;
 
     @media (min-width: 768px) {
+        margin: 0 auto;
         width: 420px;
         right: auto;
         left: 15px;
         top: 50px;
-        background: black;
-        border-radius: 4px;
-        opacity: 0.85;
+        background: #121212;
+        border-radius: 4px 4px 0 0;
     }
 
     @media (min-width: 1024px) {
+        margin: 0 auto;
         width: 420px;
         right: auto;
         left: 15px;
         top: 50px;
-        background: black;
+        background: #121212;
         border-radius: 4px;
-        opacity: 0.85;
     }
 `
 
