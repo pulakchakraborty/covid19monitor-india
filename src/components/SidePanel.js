@@ -30,6 +30,11 @@ const DailyChart = lazy(() =>
     import('./DailyChart')
 );
 
+const DailyDeathsChart = lazy(() =>
+    import('./DailyDeathsChart')
+);
+
+
 const Styles = styled.div`
     position: absolute;
     display: block;
@@ -160,10 +165,13 @@ const SidePanel = ({ summary, mapIsIndia, tableData }) => {
             />*/}
             <ToggleChartWrapper  chartName={chartName} setChartName={setChartName}/>
             <Suspense fallback={renderLoader()}>
-                {!mapIsIndia && newInfectionsChart && <DailyChart chartData={allHistorical} />}
-                {mapIsIndia && newInfectionsChart && <DailyChart chartData={indiaHistorical} />}
-                {!mapIsIndia && !newInfectionsChart && <CasesChart chartData={allHistorical} />}
-                {mapIsIndia && !newInfectionsChart && <CasesChart chartData={indiaHistorical} />}
+                {!mapIsIndia && chartName === 'Daily Cases' && <DailyChart chartData={allHistorical} />}
+                {mapIsIndia && chartName === 'Daily Cases' && <DailyChart chartData={indiaHistorical} />}
+                {!mapIsIndia && chartName === 'Total Cases' && <CasesChart chartData={allHistorical} />}
+                {mapIsIndia && chartName === 'Total Cases' && <CasesChart chartData={indiaHistorical} />}
+                {!mapIsIndia && chartName === 'Daily Deaths' && <DailyDeathsChart chartData={allHistorical} />}
+                {mapIsIndia && chartName === 'Daily Deaths' && <DailyDeathsChart chartData={indiaHistorical} />}
+
             </Suspense>
             <Suspense fallback={renderLoader()}>
                 {mapIsIndia
