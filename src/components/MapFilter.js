@@ -46,6 +46,7 @@ const Button = styled.button`
     `}
 `
 const Container = styled.div`
+    z-index: 2000;
     display: flex;
     justify-content: space-evenly;
     padding: 0.5em 0.25em 0.35em;

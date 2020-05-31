@@ -60,8 +60,6 @@ const Styles = styled.div`
         border-radius: 4px;
         font-family: 'Roboto Condensed', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         text-align: center;
-        //background-color: rgba(48,36,45,0.15);
-        //color: grey;
         background-color: rgb(63, 59, 59);
         color: black;
     }
