@@ -28,7 +28,7 @@ const SwitchChartWrapper = ({ newInfectionsChart, setNewInfectionsChart }) => {
                         onChange={() => setNewInfectionsChart(newInfectionsChart => !newInfectionsChart)}
                     />
                 </Grid>
-                <Grid item>Cumulative</Grid>
+                <Grid item>Daily</Grid>
                 </Grid>
             </FormGroup>
         </Styles>
