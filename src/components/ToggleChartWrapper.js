@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 const Styles = styled.div`
     padding: 0.1em 15px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     background: #191919;
 `
 
@@ -13,14 +13,13 @@ const Button = styled.button`
     border: 2px solid #d14f69;
     color: #d14f69;
     width: 100%;
-    height: 2.5rem;
-    font-size: 1.2rem;
-    font-weight: 500;
+    height: 1.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
     text-align: center;
     opacity: 0.5;
     cursor: pointer;
     pointer-events: all;
-
 
     /* "down" effect on click */
     &:active {
@@ -44,9 +43,25 @@ const Button = styled.button`
     `}
 `
 const ButtonGroup = styled.div`
-    padding: 0.75em 0.25em 0.75em;
-    width: 35%;
+    padding: 0.5em 0.25em 0.5em;
+    width: 45%;
     border-radius: 4px;
+
+    @media (min-width: 375px) {
+        width: 40%;
+    }
+
+    @media (min-width: 425px) {
+        width: 35%;
+    }
+
+    @media (min-width: 768px) {
+        width: 33%;
+    }
+
+    @media (min-width: 1024px) {
+        width: 33%;
+    }
 `
 
 
@@ -56,14 +71,14 @@ const ToggleChartWrapper = ({ chartName, setChartName }) => {
         <Styles>
             <ButtonGroup>
                 <Button
-                    style={{ borderBottom: '1px solid #d14f69', borderRadius: '4px 4px 0 0' }}
+                    style={{ borderBottom: '1px solid #d14f69', borderRadius: '32px 0 0 0' }}
                     onClick={() => setChartName('Total Cases')}
                     isActive={chartName === 'Total Cases'}
                 >
                     Total Cases
                 </Button>
                 <Button
-                    style={{ borderTop: '1px solid #d14f69', borderRadius: '0 0 4px 4px' }}
+                    style={{ borderTop: '1px solid #d14f69', borderRadius: '0 0 0 32px' }}
                     onClick={() => setChartName('Active Cases')}
                     isActive={chartName === 'Active Cases'}
                 >
@@ -72,14 +87,14 @@ const ToggleChartWrapper = ({ chartName, setChartName }) => {
             </ButtonGroup>
             <ButtonGroup>
                 <Button
-                    style={{ borderBottom: '1px solid #d14f69', borderRadius: '4px 4px 0 0' }}
+                    style={{ borderBottom: '1px solid #d14f69', borderRadius: '0 32px 0 0' }}
                     onClick={() => setChartName('Daily Cases')}
                     isActive={chartName === 'Daily Cases'}
                 >
                     Daily Cases
                 </Button>
                 <Button
-                    style={{ borderTop: '1px solid #d14f69', borderRadius: '0 0 4px 4px' }}
+                    style={{ borderTop: '1px solid #d14f69', borderRadius: '0 0 32px 0' }}
                     onClick={() => setChartName('Daily Deaths')}
                     isActive={chartName === 'Daily Deaths'}
                 >

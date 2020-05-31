@@ -43,7 +43,7 @@ const ActiveCasesChart = ({ chartData }) => {
                     />
                     <Tooltip />
                     <Legend />
-                    <Area name="Active Cases" type="monotone" dataKey="active" stroke="#108d90" fill="rgba(129,255,202,0.3)" />
+                    <Area name="Active Cases" type="monotone" dataKey="active" stroke="#007bff" fill="rgba(0,123,255,0.6)" />
                 </AreaChart>
             </ResponsiveContainer>
         </Styles>
