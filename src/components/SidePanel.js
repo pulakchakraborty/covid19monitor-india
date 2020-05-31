@@ -8,6 +8,7 @@ import CasesHighlights from './CasesHighlights';
 import config from '../config';
 import { TableSettingsIndia, TableSettingsWorld } from '../config/TableSettings';
 import SwitchChartWrapper from './SwitchChartWrapper';
+import ToggleChartWrapper from './ToggleChartWrapper';
 import { PlaceholderText } from '../styles/global';
 import Spinner from './Spinner';
 //import InfectionsChart from './InfectionsChart';
@@ -87,6 +88,8 @@ const SidePanel = ({ summary, mapIsIndia, tableData }) => {
     const [ allHistorical, setAllHistorical ] = useState([]);
     const [ errorMessage, setErrorMessage ] = useState('');
     const [ newInfectionsChart, setNewInfectionsChart ] = useState(false);
+    /* Stores any one of the four available charts for rendering purpose */
+    const [ chartName, setChartName ] = useState('Total Cases');
 
     const { indiaHistory, allHistory } = config;
 
@@ -151,10 +154,11 @@ const SidePanel = ({ summary, mapIsIndia, tableData }) => {
     return(
         <Styles>
             <CasesHighlights summary={summary} mapIsIndia={mapIsIndia} />
-            <SwitchChartWrapper
+            {/*<SwitchChartWrapper
                 newInfectionsChart={newInfectionsChart}
                 setNewInfectionsChart={setNewInfectionsChart}
-            />
+            />*/}
+            <ToggleChartWrapper  chartName={chartName} setChartName={setChartName}/>
             <Suspense fallback={renderLoader()}>
                 {!mapIsIndia && newInfectionsChart && <DailyChart chartData={allHistorical} />}
                 {mapIsIndia && newInfectionsChart && <DailyChart chartData={indiaHistorical} />}
