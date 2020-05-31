@@ -21,12 +21,12 @@ const NavHeader = styled.div`
 `;
 
 const NavLeft = styled.div`
-    width: 70%;
+    width: 80%;
     text-align: left;
 `;
 
 const NavRight = styled.div`
-    width: 30%;
+    width: 20%;
     text-align: right;
     pointer-events: all;
     margin-top: 8px;
