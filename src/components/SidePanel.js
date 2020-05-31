@@ -42,7 +42,7 @@ const DailyDeathsChart = lazy(() =>
 const Styles = styled.div`
     position: absolute;
     display: block;
-    height: 700px;
+    height: 720px;
     width: 100%;
     background: #121212;
     color: #808080;
@@ -54,7 +54,7 @@ const Styles = styled.div`
         left: 15px;
         position: absolute;
         display: block;
-        height: 646px;
+        height: 664px;
         top: 120px;
         border-radius: 0 0 4px 4px;
     }
@@ -65,7 +65,7 @@ const Styles = styled.div`
         left: 15px;
         position: absolute;
         display: block;
-        height: 646px;
+        height: 664px;
         top: 120px;
         border-radius: 0 0 4px 4px;
     }
