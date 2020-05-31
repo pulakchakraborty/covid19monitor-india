@@ -22,6 +22,10 @@ const CasesChart = lazy(() =>
     import('./CasesChart')
 );
 
+const ActiveCasesChart = lazy(() =>
+    import('./ActiveCasesChart')
+);
+
 const InfectionsChart = lazy(() =>
     import('./InfectionsChart')
 );
@@ -120,6 +124,7 @@ const SidePanel = ({ summary, mapIsIndia, tableData }) => {
                                     confirmed: data.summary.total,
                                     recovered: data.summary.discharged,
                                     dead: data.summary.deaths,
+                                    active: data.summary.total - data.summary.discharged,
                                     newCases: data.summary.total - responseHistory.data[index].summary.total,
                                     newRecoveries: data.summary.discharged - responseHistory.data[index].summary.discharged,
                                     newDeaths: data.summary.deaths - responseHistory.data[index].summary.deaths
@@ -137,6 +142,8 @@ const SidePanel = ({ summary, mapIsIndia, tableData }) => {
                                 confirmed: Object.values(responseAllHistory.cases)[index+1],
                                 dead: Object.values(responseAllHistory.deaths)[index+1],
                                 recovered: Object.values(responseAllHistory.recovered)[index+1],
+                                active: Object.values(responseAllHistory.cases)[index+1] -
+                                    Object.values(responseAllHistory.recovered)[index+1],
                                 newCases: Object.values(responseAllHistory.cases)[index+1] -
                                     Object.values(responseAllHistory.cases)[index],
                                 newRecoveries: Object.values(responseAllHistory.recovered)[index+1] -
@@ -167,10 +174,12 @@ const SidePanel = ({ summary, mapIsIndia, tableData }) => {
             <Suspense fallback={renderLoader()}>
                 {!mapIsIndia && chartName === 'Daily Cases' && <DailyChart chartData={allHistorical} />}
                 {mapIsIndia && chartName === 'Daily Cases' && <DailyChart chartData={indiaHistorical} />}
-                {!mapIsIndia && chartName === 'Total Cases' && <CasesChart chartData={allHistorical} />}
-                {mapIsIndia && chartName === 'Total Cases' && <CasesChart chartData={indiaHistorical} />}
                 {!mapIsIndia && chartName === 'Daily Deaths' && <DailyDeathsChart chartData={allHistorical} />}
                 {mapIsIndia && chartName === 'Daily Deaths' && <DailyDeathsChart chartData={indiaHistorical} />}
+                {!mapIsIndia && chartName === 'Total Cases' && <CasesChart chartData={allHistorical} />}
+                {mapIsIndia && chartName === 'Total Cases' && <CasesChart chartData={indiaHistorical} />}
+                {!mapIsIndia && chartName === 'Active Cases' && <ActiveCasesChart chartData={allHistorical} />}
+                {mapIsIndia && chartName === 'Active Cases' && <ActiveCasesChart chartData={indiaHistorical} />}
 
             </Suspense>
             <Suspense fallback={renderLoader()}>
