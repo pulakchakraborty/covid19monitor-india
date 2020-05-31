@@ -39,6 +39,7 @@ const InfectionsChart = ({ chartData }) => {
                         type="number"
                         tickSize={6}
                         mirror={true}
+                        domain={[0, 'dataMax']}
                     />
                     <Tooltip />
                     <Legend />
