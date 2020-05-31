@@ -25,6 +25,10 @@ const InfectionsChart = lazy(() =>
     import('./InfectionsChart')
 );
 
+const DailyChart = lazy(() =>
+    import('./DailyChart')
+);
+
 const Styles = styled.div`
     position: absolute;
     display: block;
@@ -108,7 +112,9 @@ const SidePanel = ({ summary, mapIsIndia, tableData }) => {
                                     confirmed: data.summary.total,
                                     recovered: data.summary.discharged,
                                     dead: data.summary.deaths,
-                                    newInfections: data.summary.total - responseHistory.data[index].summary.total
+                                    newCases: data.summary.total - responseHistory.data[index].summary.total,
+                                    newRecoveries: data.summary.discharged - responseHistory.data[index].summary.discharged,
+                                    newDeaths: data.summary.deaths - responseHistory.data[index].summary.deaths
                                 }
                             })
                         );
@@ -123,8 +129,12 @@ const SidePanel = ({ summary, mapIsIndia, tableData }) => {
                                 confirmed: Object.values(responseAllHistory.cases)[index+1],
                                 dead: Object.values(responseAllHistory.deaths)[index+1],
                                 recovered: Object.values(responseAllHistory.recovered)[index+1],
-                                newInfections: Object.values(responseAllHistory.cases)[index+1] -
-                                    Object.values(responseAllHistory.cases)[index]
+                                newCases: Object.values(responseAllHistory.cases)[index+1] -
+                                    Object.values(responseAllHistory.cases)[index],
+                                newRecoveries: Object.values(responseAllHistory.recovered)[index+1] -
+                                    Object.values(responseAllHistory.recovered)[index],
+                                newDeaths: Object.values(responseAllHistory.deaths)[index+1] -
+                                    Object.values(responseAllHistory.deaths)[index]
                             })),
                         ]);
                     }
@@ -146,8 +156,8 @@ const SidePanel = ({ summary, mapIsIndia, tableData }) => {
                 setNewInfectionsChart={setNewInfectionsChart}
             />
             <Suspense fallback={renderLoader()}>
-                {!mapIsIndia && newInfectionsChart && <InfectionsChart chartData={allHistorical} />}
-                {mapIsIndia && newInfectionsChart && <InfectionsChart chartData={indiaHistorical} />}
+                {!mapIsIndia && newInfectionsChart && <DailyChart chartData={allHistorical} />}
+                {mapIsIndia && newInfectionsChart && <DailyChart chartData={indiaHistorical} />}
                 {!mapIsIndia && !newInfectionsChart && <CasesChart chartData={allHistorical} />}
                 {mapIsIndia && !newInfectionsChart && <CasesChart chartData={indiaHistorical} />}
             </Suspense>
