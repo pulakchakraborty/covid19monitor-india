@@ -5,10 +5,10 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <Suspense fallback={''}>
-        <App />
-    </Suspense>,
-    document.getElementById('root')
+  <Suspense fallback={''}>
+    <App />
+  </Suspense>,
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
