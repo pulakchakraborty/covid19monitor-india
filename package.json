@@ -12,6 +12,7 @@
     "country-code-lookup": "0.0.17",
     "date-fns": "^2.13.0",
     "mapbox-gl": "^1.10.0",
+    "prettier": "2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
@@ -23,7 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier \"**/*.{js,jsx,css}\" --write"
   },
   "eslintConfig": {
     "extends": "react-app"
