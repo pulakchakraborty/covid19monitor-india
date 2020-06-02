@@ -4,7 +4,13 @@
 
 ![homepage](https://github.com/pulakchakraborty/c19-india-map/blob/master/public/homepage.png)
 
-Covid19Monitor is a map-based responsive web-application built using React to monitor and visualize the spread of the novel Covid19 virus in India and across the world. The application has an interactive dashboard which provides a latest and historical summary of the confirmed, recovered and deceased cases in India on a state-level and also across the world. The dashboard also includes area, line and bar charts to visualize the historical data on cumulative and daily basis. An interactive map shows the impact of Coronavirus on a grographical level.
+Covid19Monitor is a map-based responsive web-application built using React to monitor and visualize the spread of the novel Covid19 virus in India and across the world. 
+
+### Features
+
+- Interactive dashboard which provides a latest and historical summary of the confirmed, recovered and deceased cases in India on a state-level and also across the world on a country-level. 
+- The dashboard also includes area, line and bar charts to visualize the historical data on cumulative and daily basis. 
+- An interactive map shows the impact of Coronavirus on a geographical level.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
