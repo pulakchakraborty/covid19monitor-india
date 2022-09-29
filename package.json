@@ -17,7 +17,7 @@
     "react-dom": "16.13.1",
     "react-scripts": "3.4.1",
     "react-table": "7.6.3",
-    "recharts": "1.8.5",
+    "recharts": "2.1.14",
     "styled-components": "5.2.1"
   },
   "scripts": {
